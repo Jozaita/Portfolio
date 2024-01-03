@@ -1,0 +1,84 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+	{% if not inactive %}
+	<div class="contained-fluid">
+		<div class="panel panel-primary">
+			<div class="panel-heading">Module 1 - Answers 3/3</div>
+		</div>
+	</div>
+		{% else %} 
+		Disconnected
+	{% endif %}
+{% endblock %}
+
+{% block content %}
+{% if not inactive %}
+		<div class="container-fluid">
+			<div class="panel panel-primary">
+				<div class="panel-body">
+					<p>You have answered correctly <strong>{{ player.correct_answers_3 }}</strong> out of <strong>4</strong> questions. Now, we will show you your answers together with the correct ones.</p>
+				</div>
+			</div>
+
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<b>Answers</b>
+				</div>
+
+				<div class="table-responsive">
+					<table class="table">
+						<tr>
+							<th>Question</th>
+							<th>Your answer</th>
+							<th>Correct answer</th>
+						</tr>
+						{% if player.question_8 == Constants.answer_8 %}
+							<tr class="success">
+						{% else %}
+							<tr class="danger">
+						{% endif %}
+								<td>{{ question_8_text }}</td>
+								<td>{{ player.question_8|floatformat:"0" }} %</td>
+								<td>{{Constants.answer_8}} %</td>
+							</tr>
+
+						{% if player.question_9 == Constants.answer_9 %}
+							<tr class="success">
+						{% else %}
+							<tr class="danger">
+						{% endif %}
+								<td>{{ question_9_text }}</td>
+								<td>{{ player.question_9|floatformat:"0" }} tokens</td>
+								<td>{{Constants.answer_9}} tokens</td>
+							</tr>
+						{% if player.question_10 == Constants.answer_10 %}
+							<tr class="success">
+						{% else %}
+							<tr class="danger">
+						{% endif %}
+								<td>{{ question_10_text }}</td>
+								<td>{{ player.question_10|floatformat:"0" }}%</td>
+								<td>{{ Constants.answer_10 }} %</td>
+							</tr>
+						{% if player.question_11 == Constants.answer_11 %}
+							<tr class="success">
+						{% else %}
+							<tr class="danger">
+						{% endif %}
+								<td>{{ question_11_text }}</td>
+								<td>{{ player.question_11|floatformat:"0" }} tokens</td>
+								<td>{{ Constants.answer_11 }} tokens</td>
+							</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		{% next_button %}
+
+	{% else %}
+	{% include 'climate_change_game_continuous/ENG/Inactive.html' %}
+	{% endif %}
+{% endblock %}

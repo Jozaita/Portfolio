@@ -1,0 +1,94 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+	{% if not inactive %}
+		Fase 6: Respuestas
+		{% else %} 
+		Desconectado
+	{% endif %}
+{% endblock %}
+
+{% block content %}
+{% if not inactive %}
+		<div class="container-fluid">
+			<div class="panel panel-primary">
+				<div class="panel-body">
+					<p>Usted ha contestado <strong>{{ player.correct_answers }}</strong> de <strong>5</strong> preguntas correctamente. A continuación le mostramos sus respuestas junto con las respuestas correctas.</p>
+					<p>La Fase 6 del experimento comenzarà en la pantalla siguiente.</p>
+				</div>
+			</div>
+
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<b>Respuestas</b>
+				</div>
+
+				<div class="table-responsive">
+					<table class="table">
+						<tr>
+							<th>Pregunta</th>
+							<th>Su respuesta</th>
+							<th>Respuesta correcta</th>
+						</tr>
+						{% if player.question_1 == Constants.a1 %}
+							<tr class="success">
+						{% else %}
+							<tr class="danger">
+						{% endif %}
+								<td>{{ Constants.question_1_text }}</td>
+								<td>{{ question_1 }}</td>
+								<td>Se alcanza el umbral y todos guardamos lo que no contribuimos</td>
+							</tr>
+
+						{% if player.question_2 == Constants.a2 %}
+							<tr class="success">
+						{% else %}
+							<tr class="danger">
+						{% endif %}
+								<td>{{ Constants.question_2_text }}</td>
+								<td>{{ question_2 }}</td>
+								<td>Todos perdemos nuestros puntos con un probabilidad del {{ Constants.probability_questions|floatformat:"0" }}%</td>
+							</tr>
+
+						{% if player.question_3 == Constants.a3 %}
+							<tr class="success">
+						{% else %}
+							<tr class="danger">
+						{% endif %}
+								<td>{{ Constants.question_3_text }}</td>
+								<td>{{ question_3 }}</td>
+								<td>{{ half_spending }}</td>
+							</tr>
+
+						{% if player.question_4 == Constants.a4_t2 %}
+							<tr class="success">
+						{% else %}
+							<tr class="danger">
+						{% endif %}
+								<td>{{ Constants.question_4_text }}</td>
+								<td>{{ question_4 }}</td>
+								<td>Falso</td>
+							</tr>
+
+							{% if player.question_5 == Constants.a5_t2 %}
+							<tr class="success">
+						{% else %}
+							<tr class="danger">
+						{% endif %}
+								<td>{{ Constants.question_5_text }}</td>
+								<td>{{ question_5 }}</td>
+								<td>Será excluído del experimento y no ganará nada para su participación. 
+							</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		{% next_button %}
+
+		{% include 'climate_change_game_continuous/text_Instructions_SPA.html' with type="reminder" %}
+	{% else %}
+	{% include 'climate_change_game_continuous/Inactive_SPA.html' %}
+	{% endif %}
+{% endblock %}

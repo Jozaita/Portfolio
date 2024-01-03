@@ -1,0 +1,66 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+	{% if not inactive %}
+	<div class="contained-fluid">
+		<div class="panel panel-primary">
+			<div class="panel-heading">Module 1 - Questions 3/3 - Example 1 </div>
+		</div>
+	</div>
+	{% else %}
+		Disconnected
+	{% endif %}
+{% endblock %}
+
+{% block content %}
+	{% if not inactive %}
+		<div class="container-fluid">
+			<div class="panel panel-primary">
+				<div class="panel-body">
+				    <p>Let’s look at two examples to better understand the decision setting. Please use the results calculator below to answer the questions.</p>
+				<br>
+				<p>Example 1: Consider the following contributions of five group members:</p>
+				<ul>
+				    <li>Group member 1: 2 </li>
+				    <li>Group member 2: 0 </li>
+				    <li>Group member 3: 10</li>
+				    <li>Group member 4: 8</li>
+				    <li>Group member 5: 0</li>
+				    <p>Use the results calculator to see what each group member would earn. In this case, no disaster occurred. </p>
+				</div>
+			</div>
+
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<b>Choose your answers here:</b>
+				</div>
+
+				<div class="table-responsive">
+					<table class="table">
+						<tr>
+							<td>{{ question_8_text}}</td>
+							<td>{% formfield player.question_8 with label="" %}</td>
+						</tr>
+						<tr>
+							<td>{{ question_9_text }}</td>
+							<td>{% formfield player.question_9 with label="" %}</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+
+
+
+
+
+			</div>
+		{% next_button %}
+		{% include 'climate_change_game_continuous/ENG/Calculator_5.html' %}
+		{% include 'climate_change_game_continuous/ENG/text_Instructions_1.html' with type="reminder"%}
+		{% include 'climate_change_game_continuous/ENG/text_Instructions_2.html' with type="reminder"%}
+		{% include 'climate_change_game_continuous/ENG/text_Instructions_3.html' with type="reminder"%}
+	{% else %}
+	{% include 'climate_change_game_continuous/ENG/Inactive.html' %}
+	{% endif %}
+{% endblock %}

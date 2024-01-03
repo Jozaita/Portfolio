@@ -1,0 +1,62 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+{% if not inactive %}
+	<div class="contained-fluid">
+		<div class="panel panel-primary">
+			<div class="panel-heading"> Results 
+			</div>
+			</div>
+{% else %}
+Disconnected
+{% endif %}
+{% endblock %}
+
+{% block content %}
+{% if not inactive %}
+
+
+		<div class="container-fluid">
+			<div class="panel panel-primary">
+				<div class="panel-heading"><b>Contribution decision</b></div>
+				<div class="panel-body">
+					<p>There was a <b>{{dis_prob_percentage|floatformat:"0"}}% chance that a disaster occurred</b>. The impact of that disaster depended on the number of tokens contributed to the collective pot by you and your group members.</p><br>
+					You <b>contributed {{player.contribution}} tokens</b> to the collective pot. In total, you and the other members of your group contributed {{group.total_contribution}} tokens to the common pot, so the impact of the disaster would be <b>reduced by {{reduced_impact|floatformat:"0"}} %</b>.
+						{% if group.disaster == 0 %}
+						<p>A random draw by the computer determined that <b>no disaster occurred</b>. You therefore keep your private tokens and your share from the tokens in the collective pot.</p><br>
+						<ul>
+							<li><p>Since you contributed {{player.contribution}} tokens to the collective pot, you kept {{player.private_tokens}} tokens for yourself.</p></li>
+							<li><p>In the common pot there are a total of {{group.total_contribution}} tokens, so each group member receives {{player.public_tokens}} tokens.</p></li>
+						</ul>
+						<p>In total, you therefore <b>earned {{player.unconditional_payoff}} tokens = £{{half_unconditional}}</b> for this decision.</p>
+
+						{% else %}
+						<p>A random draw by the computer determined that <b>a disaster occurred</b>. You may therefore have lost a share of your earnings.</p>
+
+						<p>Since you contributed {{player.contribution}} tokens to the collective pot, you kept {{player.private_tokens}} tokens for yourself.</p>
+						<p>In the common pot there are a total of {{group.total_contribution}} tokens, so each group member receives {{player.public_tokens}} tokens.</p>
+						<p>In total, you earned {{all_tokens}} tokens for this decision, of which {{reduced_impact|floatformat:"0"}}% is protected from the disaster as a result of the collective contributions.</p>
+
+						Therefore, your final earnings for this decision are <b>{{player.unconditional_payoff|floatformat:"2"}} tokens = £{{half_unconditional|floatformat:"2"}}</b>.
+
+						{% endif %}
+						<br>
+						<h3>Guesses about the answers of others</h3>
+						<p>You correctly guessed the decision taken by {{ee_accuracy}}% of the participants, which means you earned an additional <b>£{{player.payoff_empirical_expectations}}</b>.</p>
+						<p>You correctly guessed what {{ne_accuracy}}% of the participants think one should contribute, which means you earned an additional <b>£{{player.payoff_normative_expectations}}</b>.</p>
+
+						<h3>Total earnings</h3>
+						<p>The total earnings for your participation in this study are therefore<b> £{{player.payoff_currency}}</b>.</p>
+						<br>
+						<p>The experiment has finished. You can close this window now. </p>
+				</div>
+			</div>
+		</div>
+
+		
+		{% include 'climate_change_game_continuous/ENG/text_Instructions_I.html' with type="reminder" %}
+{% else %}
+{% include 'climate_change_game_continuous/ENG/Inactive.html' %}
+{% endif %}
+{% endblock %}

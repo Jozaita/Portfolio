@@ -1,0 +1,192 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+{% if not inactive %}
+	 Respuestas
+{% else %}
+Desconectado
+{% endif %}
+{% endblock %}
+{% block scripts %}
+<style>
+	.danger {
+		color:red;
+	}
+</style>
+{% endblock %}
+
+{% block content %}
+{% if not inactive %}
+		<div class="container-fluid">
+			<div class="panel panel-primary">
+				<div class="panel-body">
+					<p>Usted respondio correctamente <strong>{{ player.correct_answers }}</strong> de un total de <strong>8</strong>.
+						La parte 6 del experimento comenzará en la siguiente pantalla.</p>
+				</div>
+			</div>
+
+			<div class="panel panel-primary">
+				<div class="panel-heading mb-4">
+					<b>Si usted deposita 5 tokens en la cuenta común, y los otros cinco participantes en su grupo depositan 0 tokens entre todos:</b>
+				</div>
+
+				<div class="table-responsive">
+					<table class="table">
+						<tr>
+							<th>Pregunta</th>
+							<th>Su respuesta</th>
+							<th>La respuesta correcta</th>
+						</tr>
+						{% if player.question_1_1 == Constants.a1_1 %}
+							<tr class="success">
+						{% else %}
+							<tr class="danger">
+						{% endif %}
+								<td>¿Cuáles son sus ganancias de la cuenta privada?</td>
+								<td>{{ q_1_1 }}</td>
+								<td>{{ a11 }}</td>
+							</tr>
+
+						{% if player.question_1_2 == Constants.a1_2 %}
+							<tr class="success">
+						{% else %}
+							<tr class="danger">
+						{% endif %}
+								<td>¿Cuáles son sus ganancias totales, de la cuenta pública y la privada?</td>
+								<td>{{ q_1_2 }}</td>
+								<td>{{ a12 }}</td>
+							</tr>
+					</table>
+				</div>
+			</div>
+			<div class="panel panel-primary">
+				<div class="panel-heading mb-4">
+					<b>Si usted deposita 5 tokens en la caja común, y los otro cinco participantes de su grupo depositan 150 tokens entre todos:</b>
+				</div>
+
+				<div class="table-responsive">
+					<table class="table">
+						<tr>
+							<th>Pregunta</th>
+							<th>Su respuesta</th>
+							<th>La respuesta correcta</th>
+						</tr>
+						{% if player.question_2_1 == Constants.a2_1 %}
+							<tr class="success">
+						{% else %}
+							<tr class="danger">
+						{% endif %}
+								<td>¿Cuáles son sus ganancias de la cuenta privada?</td>
+								<td>{{ q_2_1 }}</td>
+								<td>{{ a21 }}</td>
+							</tr>
+
+						{% if player.question_2_2 == Constants.a2_2 %}
+							<tr class="success">
+						{% else %}
+							<tr class="danger">
+						{% endif %}
+								<td>¿Cuáles son sus ganancias totales, de la cuenta pública y la privada?</td>
+								<td>{{ q_2_2 }}</td>
+								<td>{{ a22 }}</td>
+							</tr>
+					</table>
+				</div>
+			</div>
+			<div class="panel panel-primary">
+				<div class="panel-heading mb-4">
+					<b>Si usted deposita 28 tokens en la caja común, y los otros cinco participantes de su grupo depositan 0 tokens entre todos:</b>
+				</div>
+
+				<div class="table-responsive">
+					<table class="table">
+						<tr>
+							<th>Pregunta</th>
+							<th>Su respuesta</th>
+							<th>La respuesta correcta</th>
+						</tr>
+						{% if player.question_3_1 == Constants.a3_1 %}
+							<tr class="success">
+						{% else %}
+							<tr class="danger">
+						{% endif %}
+								<td>¿Cuáles son sus ganancias de la cuenta privada?</td>
+								<td>{{ q_3_1 }}</td>
+								<td>{{ a31 }}</td>
+							</tr>
+
+						{% if player.question_3_2 == Constants.a3_2 %}
+							<tr class="success">
+						{% else %}
+							<tr class="danger">
+						{% endif %}
+						<td>¿Cuáles son sus ganancias totales de la cuenta pública y la privada?</td>
+								<td>{{ q_3_2 }}</td>
+								<td>{{ a32 }}</td>
+							</tr>
+					</table>
+				</div>
+			</div>
+			<div class="panel panel-primary">
+				<div class="panel-heading mb-4">
+					<b>Si usted deposita 28 tokens en la caja común, y los otros cinco participantes de su grupo depositan 150 tokens entre todos:</b>
+				</div>
+
+				<div class="table-responsive">
+					<table class="table">
+						<tr>
+							<th>Pregunta</th>
+							<th>Su respuesta</th>
+							<th>La respuesta correcta</th>
+						</tr>
+						{% if player.question_4_1 == Constants.a4_1 %}
+							<tr class="success">
+						{% else %}
+							<tr class="danger">
+						{% endif %}
+								<td>¿Cuáles son sus ganancias de la cuenta privada?</td>
+								<td>{{ q_4_1 }}</td>
+								<td>{{ a41 }}</td>
+							</tr>
+
+						{% if player.question_4_2 == Constants.a4_2 %}
+							<tr class="success">
+						{% else %}
+							<tr class="danger">
+						{% endif %}
+								<td>¿Cuáles son sus ganancias de la cuenta pública y la privada?</td>
+								<td>{{ q_4_2 }}</td>
+								<td>{{ a42 }}</td>
+							</tr>
+					</table>
+				</div>
+				<div class="table-responsive">
+					<table class="table">
+						<tr>
+							<th>Pregunta</th>
+							<th>Su respuesta</th>
+							<th>La respuesta correcta</th>
+						</tr>
+						{% if player.question_5 == Constants.a5 %}
+							<tr class="success">
+						{% else %}
+							<tr class="danger">
+						{% endif %}
+						<td>Si usted se ausenta en  {{max_absence}} decisiones en esta parte. ¿Qué sucede con su participación en el experimento?</td>
+								<td>{{ q_5 }}</td>
+								<td>{{ a5 }}</td>
+							</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		{% next_button %}
+
+		{% include 'non_linear_cpr_game/text_Instructions_SPA.html' with type="reminder" %}
+{% else %}
+{% include 'non_linear_cpr_game/Inactive_SPA.html' %}
+{% endif %}
+	
+{% endblock %}

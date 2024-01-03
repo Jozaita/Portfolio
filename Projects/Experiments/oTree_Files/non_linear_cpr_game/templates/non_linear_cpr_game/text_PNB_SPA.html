@@ -1,0 +1,22 @@
+{% load staticfiles otree_tags %}
+
+{% block content %}
+	<div class="container-fluid">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<p><b>En su opinión, ¿cuántos tokens debería un participante de su grupo, incluyéndole a usted, depositar en la caja común en esta ronda?</b></p>
+			</div>
+
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-sm-4" align="left">{% formfield player.personal_normative_beliefs with label="" %}</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12" align="left"><img class="img-responsive" src="{% static "non_linear_cpr_game/PNB_spa.png" %}" width="400"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+					<p>Puede encontrar la tabla de ganancias  <a href="{% static "non_linear_cpr_game/CPR_Table_Payoffs.pdf"  %}" target="_blank">aquí</a> .
+{% endblock %}

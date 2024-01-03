@@ -1,0 +1,129 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+	{% if not inactive %}
+		Answers
+		{% else %} 
+		Disconnected
+	{% endif %}
+{% endblock %}
+
+{% block content %}
+{% if not inactive %}
+		<div class="container-fluid">
+			<div class="panel panel-primary">
+				<div class="panel-body">
+					<p>You have answered correctly <strong>{{ player.correct_answers }}</strong> out of <strong>8</strong> questions. Now, we will show you your answers together with the correct ones.</p>
+				</div>
+			</div>
+
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<b>Answers</b>
+				</div>
+
+				<div class="table-responsive">
+					<table class="table">
+						<tr>
+							<th>Question</th>
+							<th>Your answer</th>
+							<th>Correct answer</th>
+						</tr>
+						{% if player.question_1 == Constants.answer_1 %}
+							<tr class="success">
+						{% else %}
+							<tr class="danger">
+						{% endif %}
+								<td>{{ question_1_text }}</td>
+								<td>{{ player.question_1 }}</td>
+								<td>{{Constants.answer_1}} tokens</td>
+							</tr>
+
+						{% if player.question_2 == Constants.answer_2 %}
+							<tr class="success">
+						{% else %}
+							<tr class="danger">
+						{% endif %}
+								<td>{{ question_2_text }}</td>
+								<td>{{ player.question_2 }}</td>
+								<td>{{Constants.answer_2}}</td>
+							</tr>
+						{% if player.question_3 == Constants.answer_3 %}
+							<tr class="success">
+						{% else %}
+							<tr class="danger">
+						{% endif %}
+								<td>{{ question_3_text }}</td>
+								<td>{{ player.question_3 }}</td>
+								<td>{{ Constants.answer_3 }} %</td>
+							</tr>
+
+						{% if player.question_4 == Constants.answer_4 %}
+							<tr class="success">
+						{% else %}
+							<tr class="danger">
+						{% endif %}
+								<td>{{ question_4_text }}</td>
+								<td>{{ player.question_4 }}</td>
+								<td>{{Constants.answer_4}}</td>
+							</tr>
+
+<!--							{% if player.question_5 == Constants.answer_5 %}
+							<tr class="success">
+						{% else %}
+							<tr class="danger">
+						{% endif %}
+								<td>{{ question_5_text }}</td>
+								<td>{{ player.question_5 }}</td>
+								<td>{{Constants.answer_5}} % 
+							</tr>-->
+							{% if player.question_6 == Constants.answer_6 %}
+							<tr class="success">
+						{% else %}
+							<tr class="danger">
+						{% endif %}
+								<td>{{ question_6_text }}</td>
+								<td>{{ player.question_6 }}</td>
+								<td>{{Constants.answer_6}} tokens 
+							</tr>
+							{% if player.question_7 == Constants.answer_7 %}
+							<tr class="success">
+						{% else %}
+							<tr class="danger">
+						{% endif %}
+								<td>{{ question_7_text }}</td>
+								<td>{{ player.question_7 }}</td>
+								<td>{{Constants.answer_7}} tokens 
+							</tr>
+							</tr>
+							{% if player.question_8 == Constants.answer_8 %}
+							<tr class="success">
+						{% else %}
+							<tr class="danger">
+						{% endif %}
+								<td>{{ question_8_text }}</td>
+								<td>{{ player.question_8 }}</td>
+								<td>{{Constants.answer_8}} tokens 
+							</tr>
+							{% if player.question_9 == Constants.answer_9 %}
+							<tr class="success">
+						{% else %}
+							<tr class="danger">
+						{% endif %}
+								<td>{{ question_9_text }}</td>
+								<td>{{ player.question_9 }}</td>
+								<td>{{Constants.answer_9}} tokens 
+							</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		{% next_button %}
+
+		{% include 'climate_change_game_continuous/ENG/text_Instructions_I.html' with type="reminder" %}
+	{% else %}
+	{% include 'climate_change_game_continuous/ENG/Inactive.html' %}
+	{% endif %}
+{% endblock %}

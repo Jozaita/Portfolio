@@ -1,0 +1,28 @@
+{% extends 'otree/WaitPage.html' %}
+{% load staticfiles otree_tags  %}
+{% block title %}
+{% if not inactive  %}
+Calculando los pagos
+{% else  %}
+Desconectado
+{% endif  %}
+{% endblock %}
+{% block content %}
+{% if not inactive  %}
+<p>
+Espere a que se hayan calculado los pagos.
+</p>
+<p>
+Recuerde que se han tomado un total de {{absence}} decisiones automáticas. Si se toman más de {{max_absence}}  decisiones automáticas, se le considerará desconectado y su pantalla quedará bloqueada. 
+</p>
+{% else  %}
+{% include 'non_linear_cpr_game/Inactive_SPA.html'  %}
+{% endif  %}
+{% endblock  %}
+
+
+
+
+
+
+

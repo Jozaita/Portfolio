@@ -1,0 +1,60 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+	{% if not inactive %}
+	<div class="contained-fluid">
+		<div class="panel panel-primary">
+			<div class="panel-heading">Examples</div>
+		</div>
+	</div>
+	{% else %}
+		Disconnected
+	{% endif %}
+{% endblock %}
+
+{% block content %}
+
+	{% if not inactive %}
+		<div class="container-fluid">
+			<div class="panel panel-primary">
+				<div class="panel-body">
+					<p>Below we describe several possible scenarios for different contribution levels. At the bottom of the page, you find a <b>results calculator</b> that you can use to simulate various decision scenarios. You can move each of the five sliders representing the contribution decisions of five participants and see how this affects the total contributions, how this reduces the impact of a disaster, and each participant’s earnings if a disaster would or would not happen. Please take some time to consider each of the examples and to familiarize yourself with the decision scenario and the results calculator. </p><br>
+					<h4><b>Example 1: No one contributes to the collective pot</b> </h4>
+				<br>
+				<p><b>No disaster occurs ({{comp_dis_prob_percentage|floatformat:"0"}} %):</b> If no one contributes any token into the collective pot (i.e., everyone keeps their tokens privately), everyone earns their {{Constants.endowment}} tokens.</p>
+				<br>
+				<p><b>A disaster occurs ({{dis_prob_percentage|floatformat:"0"}} %):</b> If no one contributes anything into the collective fund, the impact of the disaster has not been reduced and everyone loses all tokens.</p>
+				<br><br>
+				<h4><b>Example 2: Everyone contributes all tokens to the collective pot</b></h4>
+				<br>
+				<p><b>No disaster occurs ({{comp_dis_prob_percentage|floatformat:"0"}} %):</b> if everyone contributed all tokens into the collective pot ({{all_contribute_all}} tokens), the {{all_contribute_all}} tokens are divided over all group members and everyone earns {{Constants.endowment}} tokens = £{{token_value|floatformat:"2"}}.</p>
+				<br>
+				<p><b>A disaster occurs ({{dis_prob_percentage|floatformat:"0"}} %):</b> if everyone contributed all tokens into the collective pot ({{all_contribute_all}} tokens), the impact of the disaster is covered entirely. The {{all_contribute_all}} tokens are divided over all group members and everyone earns {{Constants.endowment}} tokens = £{{token_value|floatformat:"2"}}. Hence, earnings are the same regardless of whether the disaster occurred or not.</p>
+				<br><br>
+				<h4><b>Example 3: Everyone contributes half of their tokens to the collective pot</b></h4>
+				<br>
+				<p><b>No disaster occurs ({{comp_dis_prob_percentage|floatformat:"0"}} %):</b> if everyone contributed half of their tokens into the collective pot ({{all_contribute_half}} tokens), your earnings consist of {{Constants.endowment|floatformat:"0"}} tokens = £{{token_value|floatformat:"2"}}: the {{half_endowment|floatformat:"0"}} tokens kept privately and the share of the tokens that were contributed into the collective pot ({{half_endowment|floatformat:"0"}} tokens).
+				<p><b>A disaster occurs ({{dis_prob_percentage|floatformat:"0"}} %):</b> if everyone contributed half of their tokens into the collective pot ({{half_endowment|floatformat:"0"}} tokens), the impact of the disaster is reduced by 50%. You would lose half of your tokens, ending up with {{half_endowment|floatformat:"0"}} tokens = £{{token_half_value|floatformat:"2"}}.</p>
+				<br><br>
+				<h4><b>Example 4: Two group members contribute 8 tokens to the collective pot, one contributes 4 tokens, and two group members keep the tokens for themselves.</b></h4> 	 
+				<br>
+				<p><b>No disaster occurs ({{comp_dis_prob_percentage|floatformat:"0"}} %):</b> There are 20 tokens in the collective pot. Every group member receives their share of 4 tokens from this collective pot. The group members that contributed 8 tokens would earn 6 tokens (2 private + 4 collective) = £3.00, the member who contributed 4 tokens would earn 10 tokens (6 private + 4 collective) = £5.00 while the group members that kept their tokens privately would earn 14 tokens (10 + 4)  = £7.00.</p>
+				<p><b>A disaster occurs ({{dis_prob_percentage|floatformat:"0"}} %)</b>: There are 20 tokens in the collective pot. This reduces the impact of the disaster by 40%. The group members that contributed 8 tokens would earn 2.4 tokens (40% of 6 tokens) = £1.20, the group member who contributed 4 tokens would earn 4 tokens (40% of 10 tokens) = £2.00, while the group members that kept their tokens privately would earn 5.6 tokens (40% of 14 tokens) = £2.80.</p>
+				<br><br>
+
+
+
+					<p>Now, we will proceed with some questions to check if you have understood the instructions.</p>
+				</div>
+			</div>
+		</div>
+
+		{% next_button %}
+		
+		{% include 'climate_change_game_continuous/ENG/text_Instructions_I.html' with type="reminder"%}
+
+	{% else %}
+	{% include 'climate_change_game_continuous/ENG/Inactive.html' %}
+	{% endif %}
+{% endblock %}

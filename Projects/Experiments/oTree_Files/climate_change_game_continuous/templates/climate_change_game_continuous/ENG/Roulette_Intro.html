@@ -1,0 +1,297 @@
+{% load staticfiles otree_tags %}
+
+<style>
+  .roulette-container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  #spin-button {
+    font-size: 20px;
+    margin-top: 20px;
+  }
+
+  #wheelcanvas {
+    margin-top: 0px;
+  }
+
+  .counter-container {
+    margin-top: 0px;
+    text-align: center;
+  }
+
+  .counter-label {
+    font-size: 20px;
+  }
+
+  .counter-value {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .disaster-image {
+    display: none;
+    width: 25%;
+    height: auto;
+  }
+  .no-disaster-image {
+    display: none;
+    width: 25%;
+    height: auto;
+  }
+  .disaster-image-container {
+    position: relative;
+    top: -40rem;
+    right: -5rem;
+  }
+  .no-disaster-image-container {
+    position: relative;
+    top: -40rem;
+    left: 65rem;
+  }
+  .disaster-caption {
+    display: none;
+    position: relative;
+    top:-4rem;
+    right: 35rem;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight:bold;
+
+  }
+  .no-disaster-caption {
+    display: none;
+    position: relative;
+    top:-2rem;
+    right: 34rem;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight:bold;
+  }
+</style>
+<div class="panel panel-primary">
+  <div class="panel-heading" style="text-align: center">
+    <h3>Disaster simulator</h3>
+  </div>
+
+  <div class="roulette-container">
+    <input type="button" id="spin-button" value="spin" onclick="spin();" />
+
+    <canvas id="wheelcanvas" width="400" height="400"></canvas>
+
+    <div class="counter-container">
+      <p class="counter-label">
+        Clicks: <span class="counter-value" id="click-counter"></span>
+      </p>
+
+      <p class="counter-label">
+        Disasters: <span class="counter-value" id="disaster-counter"></span>
+      </p>
+    </div>
+    <!-- 
+    <div class="disaster-image-container">
+	    <img class="disaster-image" src={% static "Disaster.png" %} />
+      <div class="disaster-caption">Disaster</div>
+    </div>
+    <div class="no-disaster-image-container">
+	    <img class="no-disaster-image" src={% static "noDisaster.png" %} />
+      <div class="no-disaster-caption"">No Disaster</div>
+    </div>
+    -->
+  </div>
+
+  <input type="hidden" id="click_count_input" name="click_count_input" value="0" />
+</div>
+
+<script>
+  var startAngle = 0;
+  var total = 10;
+  var entre = total / 2;
+  var arc = Math.PI / entre;
+  var spinTimeout = null;
+
+  var spinArcStart = 10;
+  var spinTime = 0;
+  var spinTimeTotal = 0;
+
+  var ctx;
+
+  function f_1(p, q) {
+    const a = [];
+    let greenCount = 0;
+    let redCount = 0;
+
+    while (a.length < 10) {
+      if (greenCount < p) {
+        a.push("#00FF00");
+        greenCount++;
+      } else if (redCount < q) {
+        a.push("#FF0000");
+        redCount++;
+      } else {
+        greenCount = 0;
+        redCount = 0;
+      }
+    }
+
+    return a;
+  }
+
+  var colors = f_1(1, 1);
+  function generateLabels(colorList) {
+    return colorList.map((color) => {
+      if (color === "#FF0000") {
+        return "disaster";
+      } else if (color === "#00FF00") {
+        return "no disaster";
+      }
+    });
+  }
+
+  var restaraunts = generateLabels(colors);
+
+  function draw() {
+    drawRouletteWheel();
+  }
+
+  function drawRouletteWheel() {
+    var canvas = document.getElementById("wheelcanvas");
+    if (canvas.getContext) {
+      var outsideRadius = 150;
+      var textRadius = 112.5;
+      var insideRadius = 93.75;
+
+      ctx = canvas.getContext("2d");
+      ctx.clearRect(0, 0, 400, 400);
+
+      ctx.strokeStyle = "black";
+      ctx.lineWidth = 2;
+
+      ctx.font = "bold 12px sans-serif";
+
+      for (var i = 0; i < total; i++) {
+        var angle = startAngle + i * arc;
+        ctx.fillStyle = colors[i];
+
+        ctx.beginPath();
+        ctx.arc(200, 200, outsideRadius, angle, angle + arc, false);
+        ctx.arc(200, 200, insideRadius, angle + arc, angle, true);
+        ctx.stroke();
+        ctx.fill();
+
+        ctx.save();
+        ctx.shadowOffsetX = -1;
+        ctx.shadowOffsetY = -1;
+        ctx.shadowBlur = 0;
+        ctx.shadowColor = "rgb(220,220,220)";
+        ctx.fillStyle = "black";
+        ctx.translate(
+          200 + Math.cos(angle + arc / 2) * textRadius,
+          200 + Math.sin(angle + arc / 2) * textRadius
+        );
+        ctx.rotate(angle + arc / 2 + Math.PI / 2);
+        var text = restaraunts[i];
+        ctx.fillText(text, -ctx.measureText(text).width / 2, 0);
+        ctx.restore();
+      }
+
+      //Arrow
+      ctx.fillStyle = "black";
+      ctx.beginPath();
+      ctx.moveTo(200 - 4, 200 - (outsideRadius + 5));
+      ctx.lineTo(200 + 4, 200 - (outsideRadius + 5));
+      ctx.lineTo(200 + 4, 200 - (outsideRadius - 5));
+      ctx.lineTo(200 + 9, 200 - (outsideRadius - 5));
+      ctx.lineTo(200 + 0, 200 - (outsideRadius - 13));
+      ctx.lineTo(200 - 9, 200 - (outsideRadius - 5));
+      ctx.lineTo(200 - 4, 200 - (outsideRadius - 5));
+      ctx.lineTo(200 - 4, 200 - (outsideRadius + 5));
+      ctx.fill();
+    }
+  }
+
+  var clickCount = 0;
+
+  function spin() {
+    /*
+    disasterCaption.style.display = "none";
+    disasterImage.style.display = "none";/
+    noDisasterCaption.style.display = "none";
+    noDisasterImage.style.display = "none";*/
+    // Incrementar contador de clics
+    clickCount += 1;
+
+    // Actualizar contador de clics
+    var clickCounterElement = document.getElementById("click-counter");
+    clickCounterElement.innerText = clickCount;
+    // Actualizar valor del elemento hidden
+    var clickCountInput = document.getElementById("click_count_input");
+    clickCountInput.value = clickCount ;
+
+    spinAngleStart = Math.random() * 10 + 10;
+    spinTime = 0;
+    spinTimeTotal = Math.random() * 3 + 4 * 400;
+    rotateWheel();
+  }
+
+function rotateWheel(){
+    spinTime += 30;
+    if (spinTime >= spinTimeTotal) {
+      stopRotateWheel();
+      return;
+    }
+    var spinAngle =
+      spinAngleStart - easeOut(spinTime, 0, spinAngleStart, spinTimeTotal);
+    startAngle += (spinAngle * Math.PI) / 180;
+    drawRouletteWheel();
+    spinTimeout = setTimeout("rotateWheel()", 10);
+  }
+
+  var disasterCount = 0; // Contador de desastres
+  /*
+  var disasterImage = document.querySelector(".disaster-image");
+  var noDisasterImage = document.querySelector(".no-disaster-image");
+  var disasterCaption = document.querySelector(".disaster-caption");
+  var noDisasterCaption = document.querySelector(".no-disaster-caption");
+  */
+
+  function stopRotateWheel() {
+    clearTimeout(spinTimeout);
+    var degrees = (startAngle * 180) / Math.PI + 90;
+    var arcd = (arc * 180) / Math.PI;
+    var index = Math.floor((360 - (degrees % 360)) / arcd);
+    ctx.save();
+    ctx.font = "bold 30px sans-serif";
+    var text = restaraunts[index];
+    ctx.fillText(text, 200 - ctx.measureText(text).width / 2, 200 + 10);
+
+
+    // Actualizar contador de desastres
+    if (text == "disaster") {
+      // Utilizar operador de igualdad ==
+      disasterCount += 1;
+      /*
+      disasterCaption.style.display = "block";
+      disasterImage.style.display = "block";*/
+    } else if (text == "no disaster") {
+      /*
+      noDisasterCaption.style.display = "block";
+      noDisasterImage.style.display = "block";
+      */
+    }
+    // Mostrar contador de desastres
+    var counterElement = document.getElementById("disaster-counter");
+    counterElement.innerText = disasterCount;
+
+    ctx.restore();
+  }
+
+  function easeOut(t, b, c, d) {
+    var ts = (t /= d) * t;
+    var tc = ts * t;
+    return b + c * (tc + -3 * ts + 3 * t);
+  }
+
+  draw();
+</script>

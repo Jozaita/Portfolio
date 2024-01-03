@@ -1,0 +1,67 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+{% if not inactive %}
+	<div class="contained-fluid">
+		<div class="panel panel-primary">
+			<div class="panel-heading"> Resultados de ronda. 
+			</div>
+			</div>
+{% else %}
+Desconectado
+{% endif %}
+{% endblock %}
+
+{% block content %}
+{% if not inactive %}
+
+
+		<div class="container-fluid">
+			<div class="panel panel-primary">
+				<div class="panel-heading"><b>Resultado de la ronda</b></div>
+				<div class="panel-body">
+				    <p>El grupo contribuyó un total de {{group.total_contribution}} tokens a la caja común, por lo que se redujo el impacto del desastre en un {{reduced_impact|floatformat:"2"}} por ciento.</p>
+						{% if group.disaster == 1 %}
+						<p><b>Ha sucedido un desastre y todos los miembros del grupo han perdido un {{impact}} por ciento de sus ganancias</b>.
+						{% else %}
+						<p><b>No ha sucedido un desastre</b>, y por lo tanto conservan sus puntos privados.</p>
+						{% endif %}
+						En su caso, contribuyó con {{player.contribution}} tokens a la caja común, quedandosé con {{player.private_tokens}} tokens.</p>
+						<br>
+						<p><b>En la caja común se acumularon {{group.total_contribution}} tokens</b>, por lo que se reparten entre todos los miembros del grupo {{player.public_tokens|floatformat:"2"}} tokens. Sumando lo que se quedó con estas ganancias, da un total de <b> {{all_tokens}} tokens </b>.
+						{% if group.disaster == 1 %}
+						Debido al desastre, ha perdido un {{reduced_impact|floatformat:"0"}} por ciento, <b>quedándose con {{player.unconditional_payoff|floatformat:"2"}} tokens finalmente.</b></p>
+						{% else %}
+						Dado que no ha habido un desastre, se queda con ese total. 
+						{% endif %}
+						<br>
+						Con respecto a los puntos adicionales, usted ha obtenido un total de {{player.payoff_empirical_expectations|floatformat:"2"}} tokens de pago adicional por acertar la distribución real y un total de {{player.payoff_normative_expectations|floatformat:"2"}} tokens por acertar la que la gente opina que debería ser. 
+				</div>
+			</div>
+		</div>
+
+
+		<div class="container-fluid">
+			<div class="panel panel-primary">
+				<div class="panel-heading"><b>Decisión de contribución</b></div>
+				<div class="panel-body">
+					<p>La lista completa de las contribuciones de su grupo aparece más abajo, junto con el hecho de si están inactivos. Las contribuciones del resto de participantes están ordenadas al azar.</p>					<ul class="list-group">
+						<li class = "list-group-item text-success">{{player.contribution}} - Su contribución </li>
+						<li class ="list-group-item"><b>Contribuciones de los miembros de su grupo</b></li>
+						<li class = "list-group-item"><b>Contribución | ¿Está inactivo? (&#10060; indica inactividad) </b></li>
+						{% for item in contribution_inactive %}
+						<li class ="list-group-item">{{item}}</li>
+						{% endfor %}
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		{% next_button %}
+		
+		{% include 'climate_change_game_continuous/text_Instructions_SPA.html' with type="reminder" %}
+{% else %}
+{% include 'climate_change_game_continuous/Inactive_SPA.html' %}
+{% endif %}
+{% endblock %}

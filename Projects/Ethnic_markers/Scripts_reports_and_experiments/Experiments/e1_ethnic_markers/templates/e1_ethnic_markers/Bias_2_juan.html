@@ -1,0 +1,41 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags  %}
+{% block title %}
+{% if not inactive  %}
+¿Cuántos puntos hay?
+{% else  %}
+Desconectado
+{% endif  %}
+{% endblock %}
+{% block content %}
+{% if not inactive  %}
+ <div class="container marketing">
+      <div class="row">
+        <div class="col-lg-4">
+        <figure>
+         <img class="featurette-image img-responsive" src="{% static "ethnic_markers/marker_pics/sombrero_amarillo.png" %}"alt="yellow marker">
+         <p class = "mb-4" style  = "padding:30px" >Un participante  de
+         sombrero amarillo ha estimado que hay  532 puntos. </p>
+        </figure>
+        <figure>
+         <img class="featurette-image img-responsive" src="{% static "ethnic_markers/marker_pics/sombrero_azul.png" %}"alt="yellow marker">
+         <p class ="mb-4" style ="padding:30px" >Un participante de sombrero
+         azul ha estimado que hay 594 puntos. </p>
+         </figure>
+        </div>
+        <div class="col-lg-4">
+        <figure>
+        <img class= "featurette-image img-responsive" src="{%static "ethnic_markers/bias/Red_puntos_2.png" %}"alt = "yellow marker">
+        </figure>
+        <p class='mb-4' style=font-size:18px;"> ¿Cuántos puntos
+        hay en la figura?: </p>
+        {% formfield player.bias  %}
+        </div>
+      </div>
+        {% next_button %}
+        </div>
+{% else  %}
+{% include 'e1_ethnic_markers/Inactive.html'  %}
+{% endif  %}
+{% endblock  %}
+

@@ -1,0 +1,33 @@
+{% load staticfiles otree_tags %}
+
+{% block content %}
+	<div class="container-fluid">
+		<div class="panel panel-primary">
+			<div class="panel-body">
+				<p>We now ask you to express your opinion about how many tokens people should contribute to the collective pot in the decision task you just responded to:</p>
+<ul>
+    <li>You are assigned to a group with <b>{{other_players_per_group}} other participants</b></li>
+    <li>You each receive <b>{{Constants.endowment}} tokens</b></li>
+    <li>There is a  <b>{{dis_prob_percentage|floatformat:"0"}}</b> % chance that a disaster occurs</li>
+    <li>Any point contributed reduces the impact of that disaster by <b>{{d_impact_percentage|floatformat:"0"}} %</b></li>
+</ul>
+
+				<p>In your opinion, how many tokens <b>should every participant contribute</b> to the collective pot?</p><br>
+				<p><i>Please decide how many tokens each participant should contribute to the collective pot. It can be any number from 0 to 10. The remainder (if any) they would keep for themselves. You can use the results calculator and disaster simulator below. Once you are satisfied with your decision you can click <b>Next</b> to save your answer and proceed with the next question.</i></p>
+
+
+
+
+				<div class="row">
+					<div class="col-sm-12" align="left">{% formfield player.personal_normative_beliefs with label="" %}</div>
+				</div>
+				<div class="row">
+
+				</div>
+			</div>
+		</div>
+		{% include 'climate_change_game_continuous/ENG/Calculator_2.html' %}
+		{% include 'climate_change_game_continuous/ENG/Roulette.html' %}
+			</div>	
+
+{% endblock %}

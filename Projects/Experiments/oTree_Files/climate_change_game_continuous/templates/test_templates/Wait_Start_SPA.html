@@ -1,0 +1,26 @@
+{% extends 'otree/WaitPage.html' %}
+{% load staticfiles otree_tags  %}
+{% block title %}
+{% if not inactive  %}
+Esperando la lectura de instrucciones 
+{% else  %}
+Desconectado
+{% endif  %}
+{% endblock %}
+{% block content %}
+{% if not inactive  %}
+<p>
+Espere a que lleguen a esta página el resto de miembros de su grupo. Esto puede tomar un total de unos 15 minutos desde el comienzo oficial del experimento. 
+</p>
+<p>
+Recuerde que se han tomado un total de {{absence}} decisiones automáticas. Si se toman más de {{max_absence}}  decisiones automáticas, se le considerará desconectado y su pantalla quedará bloqueada. 
+</p>
+{% include 'non_linear_cpr_game/text_Instructions_SPA.html' with type="reminder" %}
+
+{% else  %}
+{% include 'non_linear_cpr_game/Inactive_SPA.html'  %}
+{% endif  %}
+{% endblock  %}
+
+
+

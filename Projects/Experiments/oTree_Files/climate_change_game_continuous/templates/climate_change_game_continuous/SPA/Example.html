@@ -1,0 +1,45 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+	{% if not inactive %}
+		Fase 6: Ejemplos
+	{% else %}
+		Desconectado
+	{% endif %}
+{% endblock %}
+
+{% block content %}
+
+	{% if not inactive %}
+		<div class="container-fluid">
+			<div class="panel panel-primary">
+				<div class="panel-body">
+					<h4>Ejemplo 1</h4>
+					<p>En la ronda 1 se le ha agrupado al azar con otras {{ other_players_per_group }} personas. Cada uno de ustedes recibe {{ Constants.endowment }}. Usted contribuye {{ no_spending }} y los otros {{ Constants.other_players_per_group }} contribuyen {{ half_spending }} cada uno. De esta manera el total reunido por el grupo es {{ sum1 }} (= {{ no_spending }} + {{ other_players_per_group }} &times {{ half_spending }}), que no llega a los {{ Constants.disaster_threshold }} necesarios.</p>
+					
+					<p>Puesto que su grupo no logró acumular suficientes puntos, el ordenador selecciona aleatoriamente un número del 1 al 10. El ordenador elige 2 lo que significa que todos ustedes terminan la ronda con {{ Constants.disaster_low }} puntos.</p>
+					
+					<h4>Ejemplo 2</h4>
+					<p>En la ronda 2 se le ha agrupado al azar con otras {{ other_players_per_group }} personas. Usted contribuye {{ three_quarters_spending }} y los otros {{ Constants.other_players_per_group }} contribuyen {{ three_quarters_spending }} cada uno. De esta manera el total reunido por el grupo es {{ sum2 }} (= {{ three_quarters_spending }} + {{ other_players_per_group }} &times {{ three_quarters_spending}}), que está por encima de los {{ Constants.disaster_threshold }} necesarios.</p>
+
+					<p>Por lo tanto, todos ustedes guardan lo que no contribuyeron. Usted gana {{ one_quarter_spending }} puesto que contribuyó {{ three_quarters_spending }} (= {{ Constants.endowment }} - {{ three_quarters_spending }}) y de manera similar las otras personas ganan {{ one_quarter_spending }} puesto que contribuyeron {{ three_quarters_spending }}. (= {{ Constants.endowment }} - {{ three_quarters_spending }}).</p>
+
+					<h4>Ejemplo 3</h4>
+					<p>En la ronda 3 se le ha agrupado al azar con otras {{ other_players_per_group }} personas y, como en el ejemplo 1, usted contribuye {{ no_spending }} y los otros {{ other_players_per_group }} contribuyen {{ half_spending }} cada uno. De esta manera el total reunido por el grupo es {{ sum1 }} (= {{ no_spending }} + {{ other_players_per_group }} &times {{ half_spending }}), que no llega a los {{ Constants.disaster_threshold }} necesarios.</p>
+
+					<p>Puesto que su grupo no logró acumular suficientes puntos, el ordenador selecciona aleatoriamente un número del 1 al 10. El ordenador elige 10 lo que significa que todos ustedes ganan los puntos que no contribuyeron. En este caso, usted gana {{ Constants.endowment|floatformat:"0" }}.</p>
+					
+					<p>A continuación le haremos algunas preguntas para comprobar si ha entendido las instrucciones.</p>
+				</div>
+			</div>
+		</div>
+
+		{% next_button %}
+		
+		{% include 'climate_change_game_continuous/text_Instructions_SPA.html' with type="reminder"%}
+
+	{% else %}
+	{% include 'climate_change_game_continuous/Inactive_SPA.html' %}
+	{% endif %}
+{% endblock %}

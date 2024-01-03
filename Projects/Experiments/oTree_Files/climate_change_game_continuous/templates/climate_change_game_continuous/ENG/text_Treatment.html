@@ -1,0 +1,10 @@
+{% load staticfiles otree_tags %}
+
+<div class="panel panel-danger">
+	<div class="panel-heading"><b>Hay un cambio en el experimento.</b></div>
+	<div class="panel-body">
+		<p><strong>Desde {% if subsession.round_number == Constants.round_probability_change %}esta ronda{% else %} la ronda {{ Constants.round_probability_change }} {% endif %} hasta el final del experimento</strong>, hay un cambio: <strong>la probabilidad de que todos pierdan sus puntos si su grupo no acumula los puntos necesarios ahora es del {{ Constants.disaster_probability_100_second|floatformat:"0" }}%</strong>. Todas las demás características del experimento siguen siendo exactamente las mismas. Exactamente de la misma manera que antes, si su grupo no acumula los puntos necesarios, el ordenador sacará un número del 1 al 10 y si este número es menor o igual que {{ Constants.disaster_probability_10_second|floatformat:"0" }} todos ustedes pierden todos sus puntos. Si es mayor que {{ Constants.disaster_probability_10_second|floatformat:"0" }} ustedes guardan los que no contribuyeron.</p>
+
+		<p>Mantendremos este texto en la pantalla durante varias rondas como recordatorio. Las siguientes instrucciones han sido actualizadas para reflejar este cambio en el experimento.</p>
+	</div>
+</div>

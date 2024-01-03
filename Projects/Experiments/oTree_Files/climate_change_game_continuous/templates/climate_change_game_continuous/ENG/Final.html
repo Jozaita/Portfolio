@@ -1,0 +1,42 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+{% if not inactive %}
+	<div class="contained-fluid">
+		<div class="panel panel-primary">
+			<div class="panel-heading"> End of survey
+			</div>
+			</div>
+{% else %}
+Disconnected
+{% endif %}
+{% endblock %}
+
+{% block content %}
+{% if not inactive %}
+
+
+		<div class="container-fluid">
+			<div class="panel panel-primary">
+				<div class="panel-body">
+					<p>You have reached the end of this study. Many thanks for your participation. Once all participants completed the study, the computer will draw a random number to determine whether or not a disaster occurs. It will then calculate your earnings based on the answers of you, your group members, and (for the questions about other people) all other study participants.</p>
+					<br><br>
+					<p>We will transfer you your personal earnings after the study is complete. If you would like to see a detailed feedback of how much you earned for each task of this study, please copy and save the following personal link: <ahref="{{curr_url}}">{{curr_url}}</a></p>
+					<br><br>
+					<p>Once we transfer the payment to you, you will see the breakdown of your earnings on this webpage. Note that since participation is anonymous we cannot retrieve this link for you.</p>
+					<br><br>
+					<p>Please click ‘Finish’ to go back to Prolific and complete this study.</p>
+					<br>
+					<a href="https://app.prolific.co/submissions/complete?cc=C11TQMX0" target="_blank">
+					<input type="button" value="Finish" /></a>
+
+				</div>
+			</div>
+		</div>
+
+		
+{% else %}
+{% include 'climate_change_game_continuous/ENG/Inactive.html' %}
+{% endif %}
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'otree/WaitPage.html' %}
+{% load staticfiles otree_tags  %}
+{% block title %}
+{% if not inactive  %}
+Computing payoffs
+{% else  %}
+Offline
+{% endif  %}
+{% endblock %}
+{% block content %}
+{% if not inactive  %}
+<p>
+Please, wait until the payoffs are computed.
+</p>
+<p>
+Remember that you have used {{absence}} automatic decisions. If you reach {{max_absence}}  automatic decisions, you will be considered disconnected and your screen will be blockeda. 
+</p>
+{% else  %}
+{% include 'non_linear_cpr_game/Inactive_SPA.html'  %}
+{% endif  %}
+{% endblock  %}
+
+
+
+
+
+
+

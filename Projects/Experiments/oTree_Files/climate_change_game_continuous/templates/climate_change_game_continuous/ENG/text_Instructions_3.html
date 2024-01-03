@@ -1,0 +1,31 @@
+
+{% block content %}
+{% if not inactive %}
+	<div class="container-fluid">
+		{% if type == "reminder" %}
+			<div class="panel panel-default">
+		{% endif %}
+		{% if type != "reminder" %}
+			<div class="panel panel-primary">
+		{% endif %}
+				<div class="panel-body">
+
+
+					<h4>Instructions III</h4>
+					<p>The impact of the disaster (i.e., how much of your earnings you lose) depends on the number of tokens that were contributed to the collective pot, for these reduce the impact of the disaster.</p>
+<ul> 
+    <li><p>If all {{Constants.players_per_group}} participants <b>contribute all 10 tokens</b>, the impact of the disaster is <b>reduced by 100%</b> (5 participants × 10 tokens × 2 = 100% impact reduction).</p> </li> 
+    <li><p>If  all {{Constants.players_per_group}} participants <b>contribute 0 tokens</b> (i.e., keep all tokens privately), the impact of the disaster is <b>reduced by 0%</b>.</p> </li> 
+    <p>For every alternative number of tokens contributed to the collective fund, the total number of tokens contributed × 2 represent the share of the total earnings that is protected in case of a disaster.</p> 
+    <p>At the bottom of the page, you find a <b>results calculator</b> that you can use to simulate various decision scenarios. You can move each of the five sliders representing the contribution decisions of you and four group members and see how this affects the total contributions, how this reduces the impact of a (potential) disaster, and each participant’s earnings if a disaster would or would not happen. Please take some time to familiarize yourself with the decision scenario and the results calculator.</p>
+				</div>
+			</div>
+			<div>
+
+			{% if type != "reminder" %}
+			{% include 'climate_change_game_continuous/ENG/Calculator_5.html'%}
+			{% endif %}
+			{% else %}
+			{% include 'climate_change_game_continuous/ENG/Inactive.html' %}
+			{% endif %}
+			{% endblock %}

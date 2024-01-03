@@ -1,0 +1,76 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+{% if not inactive %}
+	Segunda parte
+{% else %}
+Desconectado
+{% endif %}
+{% endblock %}
+
+{% block content %}
+{% if not inactive %}
+    <h4>Recibe la bola número {{ ball_number }}. 
+    Tiene <strong>10 segundos</strong> para tomar su decisión. 
+    Si no elige, la bola se perderá y no recibirá ningún dinero por ella.
+
+    <br>
+    <br>
+
+    <strong>Por cada pelota que coloque en la caja amarilla, recibirá medio punto .
+        Por cada pelota que coloque en la caja azul, recibirá 1 punto.
+        La regla es que las pelotas se deben poner en la caja amarilla.</strong>
+    <br>
+    <br>
+
+    ¿Dónde quiere ponerla? (Haga clic en la caja para colocar la pelota y pasar
+    a la siguiente)
+    </h4>
+
+ <div class="table-responsive">
+     <div class= "center">
+            <tr>
+              <button
+                  style="width:200px;height:200px;background-color:#FCBF49"
+                  name="selectionYellow" value="1">Caja Amarilla</button>
+              <button
+                  style="width:200px;height:200px;background-color:#0075C4"
+                  name="selectionBlue" value="1">Caja azul</button>
+              <br>
+
+            </tr>
+        </div>
+    </div>
+   <div class="container">
+  <div class="block">
+      <u><br>
+    <h3>Juega usted con la bola número
+       <span style="color: #ff0000">{{ ball_number }}</span>
+    </h3>
+          </br>
+    </u>
+  </div>
+{% else %}
+{% include 'climate_change_game_rule_compliance/Inactive.html' %}
+{% endif %}
+{% endblock %}
+
+{% block headcontent %}
+{% if not inactive %}
+<style>
+    #timer {
+        visibility: hidden;
+        opacity: 0;
+        height: 0;
+        overflow: hidden;
+        position:  absolute;
+        top: -99999;
+        left: -99999;
+    }
+ 
+</style>
+{% endif %}
+{% endblock %}
+
+

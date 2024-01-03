@@ -1,0 +1,25 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+	{% if not inactive %}
+	<div class="contained-fluid">
+		<div class="panel panel-primary">
+			<div class="panel-heading"> Module 1 
+			</div>
+			</div>
+	{% else %}
+		Disconnected
+	{% endif %}
+{% endblock %}
+
+{% block content %}
+
+	{% if not inactive %}
+
+	<button>Start</button>
+
+	{% else %}
+	{% include 'climate_change_game_continuous/ENG/Inactive.html' %}
+	{% endif %}
+{% endblock %}

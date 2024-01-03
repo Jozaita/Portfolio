@@ -1,0 +1,44 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+	{% if not inactive %}
+	<div class="contained-fluid">
+		<div class="panel panel-primary">
+			<div class="panel-heading"> Module 1 - Page 7/8 
+			</div>
+			</div>
+	{% else %}
+		Disconnected
+	{% endif %}
+{% endblock %}
+
+{% block content %}
+
+	{% if not inactive %}
+
+
+	<div class="container-fluid">
+		<div class="panel panel-success">
+			<div class="panel-body">
+			    <p>Please recall the contribution decision you made earlier. We asked you to decide how many points to contribute without knowing how many points your group members contribute. Before making this choice, would you have been willing to use part of the 10 tokens assigned for this task to buy information about how many points other participants contributed in the same decision task? Please indicate how many tokens you would have paid to have such information.</p>
+			    <br>
+<i>Note: any token you spend to buy information about the behavior of other participants, you cannot use in the actual decision task–and will therefore not be part of your earnings. If you would not want to know how others responded to this task or would not be willing to pay tokens to know the answer, please answer 0. </i>
+				<br>
+					<div class="row">
+						<div class="col-sm-12" align="left">{% formfield player.buying_contribution with label="" %}</div>
+					</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+		{% next_button %}
+
+	{% else %}
+	{% include 'climate_change_game_continuous/ENG/Inactive.html' %}
+	{% endif %}
+{% endblock %}

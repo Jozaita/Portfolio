@@ -1,0 +1,22 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+	{% if not inactive %}
+		Stage 6: Round {{ subsession.round_number }}
+	{% else %}
+	Offline
+	{% endif %}
+{% endblock %}
+
+{% block content %}
+	{% if not inactive %}
+		{% include Constants.text_Contribute_uncond_EN %}
+
+		{% next_button %}
+	
+		{% include Constants.text_Instructions_EN with type="reminder" %}
+	{% else %}
+	{% include 'non_linear_cpr_game/Inactive_EN.html' %}
+	{% endif %}
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+{% if not inactive %}
+Preguntas
+{% else  %}
+Desconectado
+{% endif  %}
+{% endblock %}
+{% block content %}
+
+{% if not inactive  %}
+ <div class="container marketing">
+      <div class="row">
+        <div class="col-lg-4">
+        
+  {% if participant.vars.marker == 'amarillo' %}
+  <img class="featurette-image img-responsive" src="{% static "ethnic_markers/marker_pics/sombrero_amarillo_you.png" %}"alt="yellow marker">
+  {% elif participant.vars.marker == 'azul' %} 
+  <img class="featurette-image img-responsive" src="{% static "ethnic_markers/marker_pics/sombrero_azul_you.png" %}"alt="blue marker">
+  {% endif %}
+  <p class='mb-4' style="padding:20px;font-size:18px;">En una escala del
+  <b>1</b> al <b>7</b>, donde 1 es muy decepcionado y 7 es muy contento,¿cómo se sentiría si...</p>
+    <div class="input-group">
+      <label class="col-form-label">...ganase el pago de no coordinarse? (1 puntos)</label>
+      {% formfield player.pay_1_val %}
+         </div>
+    <div class="input-group">
+  <label class="col-form-label">...ganase el pago de coordinarse (1,5 puntos)?</label>
+        {% formfield player.pay_2_val %}
+         </div>
+  <span class="font-weight-bold text-primary ml-2 mt-1 valueSpan"></span>
+ </div>
+
+    </div>
+    </div>
+    {% next_button %}
+{% else  %}
+{% include 'e05_ethnic_markers/Inactive.html' %}
+{% endif %}
+ 
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+

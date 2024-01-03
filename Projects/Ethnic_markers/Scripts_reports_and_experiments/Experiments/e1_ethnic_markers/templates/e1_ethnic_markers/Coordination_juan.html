@@ -1,0 +1,73 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags  %}
+{% block title %}
+{% if not inactive  %}
+Acciones
+{% else  %}
+Desconectado
+{% endif  %}
+{% endblock %}
+{% block content  %}
+{% if not inactive %}
+        <figure>
+        <div class="row">
+        <div class="col-lg-4">
+         {% if participant.vars.marker == 'amarillo'%}
+         <img class="featurette-image img-responsive" src="{% static "ethnic_markers/marker_pics/sombrero_amarillo_you.png" %}"alt="yellow marker">
+         {% elif participant.vars.marker == 'azul'%}
+         <img class="featurette-image img-responsive" src="{% static "ethnic_markers/marker_pics/sombrero_azul_you.png" %}"alt="blue marker">
+         {% endif %}
+	 </div>
+	 <div class = "col-lg-4">
+         {% if player.marker_partner == 'amarillo' %}
+         <img class="featurette-image img-responsive" src="{% static "ethnic_markers/marker_pics/sombrero_amarillo_partner.png" %}"alt="yellow marker">
+         {% elif player.marker_partner == 'azul' %}
+         <img class="featurette-image img-responsive" src="{% static "ethnic_markers/marker_pics/sombrero_azul_partner.png" %}"alt="blue marker">
+         {% endif %}
+         </div>
+	</figure>
+        </div>
+        <h4 class='mb-4' style="padding:20px;font-size:18px;"> Su sombrero es
+        {{participant.vars.marker}} y ha sido emparejado con alguien con
+        sombrero {{player.marker_partner}}.</h4>
+	<h4 class ="mb-4" style = "padding:20px;font-size:18px">Haga clic sobre una forma para seleccionarla.</h4>
+        <h5>*Recuerde que si usted y su pareja eligen la misma forma ambos
+            recibirán 1 puntos, y si eligen diferentes formas, recibirán -0,5
+            puntos.</h5>
+	<br>
+	<br>
+	{% if player.shape_sequence == 1  %}
+	<div class = "table-responsive">
+		<div class = "center">
+			<tr>
+				<button
+			 		style ="width:100px;height:100px;background-color:#555" 
+			 		name = "acción" value = 1></button>
+				<span style="display:inline-block; width: 200px"></span>
+				<button
+			 		style = "width:100px;height:100px;background-color:#555;border-radius:50%"
+			 		name = "acción" value = 2></button>
+				<br>
+			</tr>
+        	</div>
+	</div>
+	{% elif player.shape_sequence == 2  %}	
+	<div class = "table-responsive">
+		<div class = "center">
+			<tr>
+				<button
+			 		style = "width:100px;height:100px;background-color:#555;border-radius:50%"
+			 		name = "acción" value = 2></button>
+				<span style ="display:inline-block; width:200px"></span>
+				<button
+	  				style = "width:100px;height:100px;background-color:#555"
+	  				name = "acción" value = 1></button>
+				<br>
+			</tr>
+        	</div>
+	</div>
+	{% endif %}
+{% else %}
+{% include 'e1_ethnic_markers/Inactive.html' %}
+{% endif  %}
+{% endblock  %}

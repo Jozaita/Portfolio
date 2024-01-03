@@ -1,0 +1,28 @@
+{% extends 'otree/WaitPage.html' %}
+{% load staticfiles otree_tags  %}
+{% block title %}
+{% if not inactive  %}
+Reorganizing groups ...
+{% else  %}
+Offline
+{% endif  %}
+{% endblock %}
+{% block content %}
+{% if not inactive  %}
+<p>
+Please, wait until the groups are reorganized.
+</p>
+<p>
+Remember that {{absence}} automatic decisions have been taken. If the limit of {{max_absence}} is exceeded, you will be considered disconnected, and your screen will be blocked. 
+</p>
+{% else  %}
+{% include 'non_linear_cpr_game/Inactive_EN.html'  %}
+{% endif  %}
+{% endblock  %}
+
+
+
+
+
+
+

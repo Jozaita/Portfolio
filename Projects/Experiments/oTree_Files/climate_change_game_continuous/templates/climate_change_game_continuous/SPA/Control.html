@@ -1,0 +1,60 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+	{% if not inactive %}
+		Fase 6: Preguntas, 
+	{% else %}
+		Desconectado
+	{% endif %}
+{% endblock %}
+
+{% block content %}
+	{% if not inactive %}
+		<div class="container-fluid">
+			<div class="panel panel-primary">
+				<div class="panel-body">
+					<p>Por favor, responda a las preguntas que encontrará a continuación. Están pensadas para ayudarle a comprender mejor la fase 6. Sus respuestas no tendrán ninguna consecuencia para sus pagos. Recuerdo que puede ver las instrucciones completas de esta fase en una caja en la parte de abajo de esta página (mueva la página hacia arriba si es necesario).</p>
+					<p>Le presentamos una situación en la que la probabilidad de riesgo es de un  {{prob_question}} por ciento. <strong>Introduzca las respuestas correctas en las situaciones que se le plantean.</strong>
+				</div>
+			</div>
+
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<b>Introduzca sus respuestas aquí:</b>
+				</div>
+
+				<div class="table-responsive">
+					<table class="table">
+						<tr>
+							<td>{{ Constants.question_1_text }}</td>
+							<td>{% formfield player.question_1 with label="" %}</td>
+						</tr>
+						<tr>
+							<td>{{ Constants.question_2_text }}</td>
+							<td>{% formfield player.question_2 with label="" %}</td>
+						</tr>
+						<tr>
+							<td>{{ Constants.question_3_text }}</td>
+							<td>{% formfield player.question_3 with label="" %}</td>
+						</tr>
+						<tr>
+							<td>{{ Constants.question_4_text }}</td>
+							<td>{% formfield player.question_4 with label="" %}</td>
+						</tr>
+						<tr>
+							<td>{{ Constants.question_5_text }}</td>
+							<td>{% formfield player.question_5 with label="" %}</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		{% next_button %}
+
+		{% include 'climate_change_game_continuous/text_Instructions_SPA.html' with type="reminder"%}
+	{% else %}
+	{% include 'climate_change_game_continuous/Inactive_SPA.html' %}
+	{% endif %}
+{% endblock %}

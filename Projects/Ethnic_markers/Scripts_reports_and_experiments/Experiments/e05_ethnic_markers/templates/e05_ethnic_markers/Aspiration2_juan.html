@@ -1,0 +1,62 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+
+{% block content %}
+ <div class="container marketing">
+      <div class="row">
+        <div class="col-lg-4">
+          <h2 class='mb-4' >Preguntas</h2>
+  {% if participant.vars.marker == 'amarillo' %}
+  <img class="featurette-image img-responsive" src="{% static "ethnic_markers/marker_pics/sombrero_amarillo_you.png" %}"alt="yellow marker">
+  {% elif participant.vars.marker == 'azul' %} 
+  <img class="featurette-image img-responsive" src="{% static "ethnic_markers/marker_pics/sombrero_azul_you.png" %}"alt="blue marker">
+  {% endif %}
+    <p class='mb-4' style="padding:20px;font-size:18px;">En una escala del 1 al 7, donde 1 es muy decepcionado y 7 es muy contento,¿cómo se sentiría si...</p>
+    <div class="input-group">
+      <label class="col-form-label">...ganase el pago de no coordinarse? (1 puntos)</label>
+      <input type="range" name="pay_1_val" id="pay_1_valInputId" min="1" max="7" step="1" value="3" list="ticks1" oninput="pay_1_valOutputId.value = pay_1_valInputId.value" >
+      <output name="pay_1_valOutputName" id="pay_1_valOutputId">3</output>
+       <datalist id="ticks1"> 
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+       </datalist>
+    </div>
+    <div class="input-group">
+  <label class="col-form-label">...ganase el pago de coordinarse (1,5 puntos)?</label>
+      <input type="range" name="pay_2_val" id="pay_2_valInputId" min="1" max="7" step="1" value="3" list="ticks1" oninput="pay_2_valOutputId.value = pay_2_valInputId.value" >
+      <output name="pay_2_valOutputName" id="pay_2_valOutputId">3</output>
+      <datalist id="ticks1">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+      </datalist>
+    </div>
+  <span class="font-weight-bold text-primary ml-2 mt-1 valueSpan"></span>
+ </div>
+
+    </div>
+    </div>
+    {% next_button %}
+  
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+

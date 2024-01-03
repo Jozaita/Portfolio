@@ -1,0 +1,18 @@
+{% extends "global/Base.html" %} 
+{% load staticfiles otree_tags %}
+{% block title %} 
+{% if not inactive %}
+Fin del experimento 
+{% else %}
+Desconectado
+{% endif %}
+{% endblock %}
+{% block content %}
+{% if not inactive %}
+<h4> Gracias por introducir la dirección, en unos días recibirá su pago en la cuenta indicada, {{cuenta_paypal}}.</h4>
+ <h4> Muchas gracias.</h4>
+  <h4> Puede abandonar el experimento.</h4>
+{% else %}
+{% include 'norm_compliance_3/Inactive.html' %}
+{% endif %}
+{% endblock %}

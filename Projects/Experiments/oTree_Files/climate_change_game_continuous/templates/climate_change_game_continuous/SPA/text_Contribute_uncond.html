@@ -1,0 +1,22 @@
+{% load staticfiles otree_tags %}
+
+{% block content %}
+	<div class="container-fluid">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<b>Es momento de tomar su decisión sobre su contribución</b>
+			</div>
+
+			<div class="panel-body">
+				<p>Dispone de {{Constants.endowment}} tokens. El desastre puede ocurrir con una posibilidad del {{dis_prob_prc}} por ciento. Cualquier punto invertido por cada miembro del grupo reduce el desastre en un {{dis_imp_prc}} por ciento. ¿Cuántos tokens va a invertir en el fondo común?</p>
+				<div class="row">
+					<div class="col-sm-12" align="left">{% formfield player.contribution with label="" %}</div>
+				</div>
+				<p> Recuerde que el resto de sus tokens quedarán en su fondo privado.</p>
+				<div class="row">
+					<div class="col-sm-12" align="left"><img class="img-responsive" src="{% static "climate_change_game/Contribute.png" %}" width="250"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

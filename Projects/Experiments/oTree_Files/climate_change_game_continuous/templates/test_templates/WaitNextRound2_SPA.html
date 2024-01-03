@@ -1,0 +1,18 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+	{% if not inactive %}
+		Ha tomado sus decisiones por ahora
+	{% else %}
+	Desconectado
+	{% endif %}
+{% endblock %}
+
+{% block content %}
+	{% if not inactive %}
+		{% include 'non_linear_cpr_game/text_Instructions_SPA.html' with type="reminder"%}
+	{% else %}
+	{% include 'non_linear_cpr_game/Inactive_SPA.html' %}
+	{% endif %}
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %} 
+	<div class="contained-fluid">
+		<div class="panel panel-primary">
+			<div class="panel-heading">Welcome</div>
+		</div>
+	</div>
+{% endblock %}
+{% block content %}
+		<div class="panel panel-primary">
+			<div class="panel-body">
+	<p>Welcome to our study and thank you for participating. Before starting we will provide some general information about this study. </p>
+	<br><br>
+	<b>About the study</b>
+	<p>The expected duration of this study is (on average) around <b>25 minutes</b>. In this study you will participate in <b>two modules</b> that each consist of several tasks.</p> 
+	<br>
+	<p><b>Module 1</b> is an interactive module, where you will be presented with several decision tasks that allow you to earn additional money. How much you earn depends on the decision task, on your choice in this task, and on the choice of other study participants. Note that these are real participants: There is <b>no deception</b> involved in this study. The interaction with these participants is <b>anonymous</b>. You will not know who the other participants are and they will not know who you are. Your choices and how much you earned in these choices will not be communicated to the other participants. <b>Module 2</b> consists of a short survey. After completing both modules, you will be redirected to Prolific. After all participants completed the study, we will transfer your personal payment on Prolific. In total, your payout for this study can vary between <b>£2.50</b> (the standard fee for study completion) and <b>£12</b>. Note that you will get paid only if you complete both modules.</p>
+	<br>
+	<b>Participation and privacy policy</b>
+	<p>Your participation in this study is voluntary. You will not experience any disadvantages by participating in this study. You have the right to terminate your participation in this study at any time. Early termination of the study will not have any negative consequences for you other than the possible loss of compensation.</p>
+	<br>
+	<p>Your answers will be available to the researchers in anonymized form, and there will be no possibility to identify the participants. The resulting findings are used to produce scientific research papers and presentations. In addition, the anonymized data will be made available for subsequent use by third parties, if necessary, to ensure transparency in science.</p>
+	<br>
+	<p>If you have any questions, please send an e-mail to giulia.andrighetto@istc.cnr.it</p>   
+	<br>   
+	<p>Please have a look at the <a href="{% static "InformationSheet.pdf" %}" target="_blank"><b> Information Sheet</b></a> for all information regarding the privacy and data storage with respect to this study. </p>
+	<br>
+	<b>Informed consent</b>
+	<p>I declare:</p>
+	<br>
+	<ul>
+		<p><li>that I have read and understood the contents of the  <a href="{% static "InformationSheet.pdf" %}" target="_blank"> Information Sheet</a> ;</p>
+	<p><li> that I have been informed about the objectives of the study, and that I have had enough time to make my decision;</p>
+	<p><li>that I understand that my participation is voluntary and that I am free to withdraw it from study at any time, without giving any explanation, and obtaining the non-use of the data;</p>
+	<p><li> to have been informed that the data collected during the study will remain anonymous e protected according to the European regulation on the protection of personal data “General Data Protection Regulation”, GDPR n. 2016/679, and the legislative decree 30 June 2003 n. 196 “Code
+	new in the field of personal data protection”;</p>
+	<p><li> to consent to the processing of personal data being carried out for the purposes only of scientific studies described in the Information Sheet, and for processing and publication in the form anonymous results for scientific purposes;</p>
+	<p><li> to be aware that the data recorded during the study can only be viewed by the specifically authorized personnel, and to allow these persons to be able to access data that is relevant to this study;</p>
+	</ul>
+	<br><br>
+	<input type="checkbox" name="consent" value=1  oninvalid="this.setCustomValidity('Please indicate that you agree with the terms to proceed with the study. You cannot participate without giving your consent.')" onchange="this.setCustomValidity('')" required/><label>  Yes, I agree with the above stated terms and want to participate in this study.</label>
+
+
+	<p>Please provide your Prolific ID (not your email address!) to continue, and press Start</p>
+	<br>
+  <input type="text" name="prolific_id" maxlen="50" oninvalid="this.setCustomValidity('Please provide your Prolific ID. We need your ID to transfer the payment for this study.')" onchange="this.setCustomValidity('')" placeholder="Prolific ID"  required/>
+	<button>Start</button> 
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

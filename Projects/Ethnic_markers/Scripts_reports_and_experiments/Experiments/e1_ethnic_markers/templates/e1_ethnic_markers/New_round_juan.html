@@ -1,0 +1,19 @@
+{% extends 'otree/WaitPage.html' %}
+{% load staticfiles otree_tags %}
+{% block title %}
+{% if not inactive  %}
+Preparando la nueva ronda ...
+{% else  %}
+Desconectado
+{% endif  %}
+{% endblock %}
+{% block content %}
+{% if not inactive  %}
+<p>
+Recopilando datos para la preparación de la ronda.  
+</p>
+{% else  %}
+{% include 'e1_ethnic_markers/Inactive.html'  %}
+{% endif  %}
+{% endblock  %}
+

@@ -1,0 +1,384 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"one_",
+				"one_hot_encoding"
+			],
+			[
+				"data",
+				"data_trial"
+			],
+			[
+				"ker",
+				"kernel_regularizer"
+			],
+			[
+				"pay_1_valOut",
+				"pay_1_valOutputId"
+			],
+			[
+				"co",
+				"constant"
+			],
+			[
+				"c",
+				"check_absence"
+			],
+			[
+				"timeout",
+				"timeout_happened"
+			],
+			[
+				"aspirations",
+				"aspirations"
+			],
+			[
+				"aspira",
+				"aspirations_2"
+			],
+			[
+				"strate",
+				"strategy"
+			],
+			[
+				"player",
+				"after_all_players_arrive"
+			],
+			[
+				"g",
+				"get_players"
+			],
+			[
+				"stra",
+				"strategy_P2"
+			],
+			[
+				"mar",
+				"marker"
+			],
+			[
+				"marker",
+				"marker_assignment"
+			],
+			[
+				"form",
+				"form_valid"
+			],
+			[
+				"Post",
+				"PostCreateView"
+			],
+			[
+				"url",
+				"urls"
+			],
+			[
+				"me",
+				"message"
+			],
+			[
+				"di",
+				"div\tTag"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				]
+			],
+			[
+				"Packages/Python/Python.sublime-build",
+				"Syntax Check"
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"About"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"insg",
+				"Package Control: Advanced Install Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"install pac",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/juan/ethnic_markers/Coordination.html",
+		"/home/juan/Python/TensorFlow/Tutorial/Youtube_tut_2.py",
+		"/home/juan/Python/TensorFlow/Tutorial/Youtube_tut_3.py",
+		"/home/juan/Python/TensorFlow/Tutorial/Youtube_tut_4.py",
+		"/home/juan/Python/TensorFlow/Tutorial/Youtube_tut_5.py",
+		"/home/juan/Python/TensorFlow/Tutorial/Prueba_redes.py",
+		"/home/juan/oTree/ethnic_markers/templates/ethnic_markers/Aspiration.html",
+		"/home/juan/.config/sublime-text-3/Packages/User/Python3_7.sublime-build",
+		"/home/juan/oTree/ethnic_markers/templates/ethnic_markers/Introduction.html",
+		"/home/juan/oTree/ethnic_markers/templates/ethnic_markers/Base.html",
+		"/home/juan/oTree/ethnic_markers/models.py",
+		"/home/juan/oTree/ethnic_markers/pages.py",
+		"/home/juan/oTree/ethnic_markers/templates/ethnic_markers/Coordination.html",
+		"/home/juan/oTree/ethnic_markers/templates/ethnic_markers/Results.html",
+		"/home/juan/oTree/ethnic_markers/templates/ethnic_markers/MyWaitPage.html",
+		"/home/juan/Python/TensorFlow/Tutorial/TF_tutorial.sublime-project",
+		"/home/juan/oTree/guess_two_thirds/templates/guess_two_thirds/Results.html",
+		"/home/juan/oTree/guess_two_thirds/templates/guess_two_thirds/Guess.html",
+		"/home/juan/oTree/cournot/models.py",
+		"/home/juan/oTree/cournot/pages.py",
+		"/home/juan/oTree/dictator/models.py",
+		"/home/juan/oTree/dictator/pages.py",
+		"/home/juan/oTree/common_value_auction/templates/common_value_auction/instructions.html",
+		"/home/juan/oTree/settings.py",
+		"/home/juan/oTree/manage.py",
+		"/home/juan/oTree/common_value_auction/templates/common_value_auction/Bid.html",
+		"/home/juan/oTree/common_value_auction/templates/common_value_auction/Results.html",
+		"/home/juan/oTree/common_value_auction/pages.py",
+		"/home/juan/oTree/guess_two_thirds/templates/guess_two_thirds/instructions.html",
+		"/home/juan/oTree/guess_two_thirds/templates/guess_two_thirds/Introduction.html",
+		"/home/juan/oTree/matching_pennies/pages.py",
+		"/home/juan/oTree/guess_two_thirds/pages.py",
+		"/home/juan/oTree/matching_pennies/models.py",
+		"/home/juan/oTree/guess_two_thirds/models.py",
+		"/home/juan/oTree/bargaining/pages.py",
+		"/home/juan/oTree/traveler_dilemma/pages.py",
+		"/home/juan/oTree/traveler_dilemma/models.py",
+		"/home/juan/oTree/ethnic_intro/templates/ethnic_intro/MyPage.html",
+		"/home/juan/oTree/ethnic_intro/pages.py",
+		"/home/juan/oTree/ethnic_intro/models.py",
+		"/home/juan/oTree/my_public_goods/pages.py",
+		"/home/juan/oTree/my_public_goods/templates/my_public_goods/Contribute.html",
+		"/home/juan/oTree/my_public_goods/models.py",
+		"/home/juan/oTree/my_simple_survey/pages.py",
+		"/home/juan/oTree/my_simple_survey/templates/my_simple_survey/Results.html",
+		"/home/juan/oTree/my_simple_survey/templates/my_simple_survey/MyPage.html",
+		"/home/juan/oTree/my_simple_survey/models.py",
+		"/home/juan/django_project/blog/templates/blog/home.html",
+		"/home/juan/django_project/blog/templates/blog/post_detail.html",
+		"/home/juan/django_project/users/templates/users/register.html",
+		"/home/juan/django_project/blog/templates/blog/post_form.html",
+		"/home/juan/django_project/blog/urls.py",
+		"/home/juan/django_project/users/models.py",
+		"/home/juan/django_project/blog/views.py",
+		"/home/juan/django_project/users/templates/users/profile.html",
+		"/home/juan/django_project/django_project/urls.py",
+		"/home/juan/django_project/users/views.py",
+		"/home/juan/django_project/users/forms.py",
+		"/home/juan/django_project/users/apps.py",
+		"/home/juan/django_project/users/signals.py",
+		"/home/juan/django_project/users/admin.py",
+		"/home/juan/django_project/blog/models.py",
+		"/home/juan/django_project/django_project/settings.py",
+		"/home/juan/django_project/users/templates/users/logout.html",
+		"/home/juan/django_project/users/templates/users/login.html",
+		"/home/juan/django_project/blog/templates/blog/base.html",
+		"/home/juan/django_project/blog/admin.py",
+		"/home/juan/.config/sublime-text-3/Packages/SideBarEnhancements/Side Bar.sublime-settings",
+		"/home/juan/.config/sublime-text-3/Packages/User/Side Bar.sublime-settings",
+		"/home/juan/.config/sublime-text-3/Packages/SideBarEnhancements/Default (Linux).sublime-keymap",
+		"/home/juan/django_project/blog/static/blog/main.css",
+		"/home/juan/django_project/blog/templates/blog/about.html",
+		"/home/juan/.config/sublime-text-3/Packages/User/Python3.sublime-build",
+		"/home/juan/.config/sublime-text-3/Packages/User/Python27.sublime-build",
+		"/home/juan/sublimeprueba.py",
+		"/home/juan/.config/sublime-text-3/Packages/User/Prueba.py",
+		"/home/juan/.config/sublime-text-3/Packages/Anaconda/Anaconda.sublime-settings",
+		"/home/juan/.config/sublime-text-3/Packages/User/Anaconda.sublime-settings"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"150",
+			"estrategia",
+			"rojo",
+			"red",
+			"rojo",
+			"red",
+			"absence",
+			"PORT",
+			"port"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"amarillo",
+			"yellow",
+			"amarillo",
+			"yellow",
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 35.0
+	},
+	"input":
+	{
+		"height": 73.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 288.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/User/Python3_7.sublime-build",
+	"project": "TF_tutorial.sublime-project",
+	"replace":
+	{
+		"height": 66.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 229.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

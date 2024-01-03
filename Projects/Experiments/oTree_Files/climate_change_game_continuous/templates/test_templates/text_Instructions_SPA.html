@@ -1,0 +1,53 @@
+{% load staticfiles %}
+
+{% block content %}
+	<div class="container-fluid">
+		{% if type == "reminder" %}
+			<br>
+			<br>
+			<div class="panel panel-default">
+		{% endif %}
+		{% if type != "reminder" %}
+			<div class="panel panel-primary">
+		{% endif %}
+				<div class="panel-body">
+					{% if type == "reminder" %}
+						<p><strong>Usted ha evitado <span style="color:blue">{{ absence }} decisiones{% if player.inactive != 1 %}{% endif %}</span> durante el experimento. Será excluído si usted evita un total de <span style="color:blue">{{ max_absence }} decisiones</span> y no recibirá ningún pago por su participación.</strong></p>
+						<br>
+					{% endif %}
+
+
+					<h4>Instrucciones</h4>
+					
+					<p>Comienza la sección 6 del experimento. Le pedimos por favor que lea las instrucciones correspondientes a esta sección. </p>
+					<p><b>Grupos y rondas</b>: Usted tomará decisiones durante un total de {{ Constants.num_rounds }} rondas. En cada ronda, será agrupado en un conjunto de seis participantes, incluído usted. La composición del grupo cambia cada ronda, lo que quiere decir que puede ser agrupado con 5 potencialmente nuevos participantes. Usted no será informado de quienes son los otros cinco participantes.</p>
+					<p><b>Como tomar decisiones</b>: En cada ronda a usted se le proporcionarán 30 tokens. Los demás miembros de su grupo también contarán con estos 30 tokens. Tendrá que tomar sus decisiones de manera individual y decidir como usar sus tokens. Todos los miembros del grupo tomarán sus decisiones de manera simultánea.</p>
+					<p><b>Caja común</b>: Puede depositar en la caja común cualquier número de tokens entre 0 y 30. Los tokens depositados en la caja común por todo el grupo serán incrementados por un factor y después distribuídos entre los 6 miembros del grupo de manera proporcional a lo depositado por cada miembro del grupo. El factor de retorno decrece con la cantidad total de tokens que tu grupo deposite en la caja común. Esto quiere decir que tus ganancias de la caja común no sólo dependen de la cantidad de tokens que deposite usted sino también de cuanto deposita todo el grupo en esa ronda. Podrá encontrar la fórmula de la ganancias de la caja común más abajo.</p>
+
+					<p><b>Cuenta personal</b>: Los tokens que le queden después de decidir cuántos depositar en la caja comunal son suyos y se los puede quedar.</p>
+
+					<p><b>Ganancias totales en cada ronda</b>: Sus ganancias totales por ronda son la suma de los tokens que se quedó y los que ganó de la caja común.
+						<br><br>
+						Para facilitarle la decisión, tendrá acceso a una herramienta interactiva cuando tenga que tomar sus decisiones y a una tabla indicándole sus ganacias, para cada posible inversión en la caja común, dadas las inversiones del resto de miembros de su grupo.
+					</p>
+					<p>Puede encontrar la tabla de ganancias  <a href="{% static "non_linear_cpr_game/CPR_Table_Payoffs.pdf"  %}" target="_blank">aquí</a> .
+					<p><b>Información entre rondas</b>: Después de cada ronda, usted obtendrá información sobre todas las decisiones individuales que han tomado el resto de miebros de grupo. En cada ronda, después de que todos los participantes hayan tomado sus decisiones, obtendrán información sobre: </p>
+					<ol>
+						<li>La cantidad depositada en la ronda actual.</li>
+						<li>La cantidad promedio de tokens depositada por el resto de miembros del grupo a la caja común en la ronda actual.</li>
+						<li>Sus ganancias de la caja común en la ronda actual.</li>
+						<li>La cantidad que usted se ha quedado en su cuenta privada.</li>
+						<li>La suma de sus ganancias de la caja común y la cuenta privada.</li>
+					</ol>
+
+					<p><b>Pago final</b>: Al final del experimento el sistema seleccionará al azar cinco rondas. La cantidad que haya ganado durante esas rondas será su pago final. Cada ronda es independiente de las demás en términos de sus ganacias.</p>
+					<p><b>Preguntas adicionales y puntos</b>: Durante cada ronda hay algunas preguntas adicionales que le permitirán ganar puntos extra.
+					</p>
+					<p>Al final del experimento, {{ num_subjects_win }} personas que hayan completado satisfactoriamente el experimento serán seleccionadas al azar para obtener un bonus. Este bonus multiplica las ganacias de esas personas in alguno de las posibles rondas por un factor {{ win_multiplier }}. Esto quiere decir que <strong>gente seleccionada al azar puede ganar hasta 100 € por alguna de sus decisiones de la sexta parte del experimento</strong> sumado a sus pagos previos.</p>
+					<p>Recuerde, si usted se ausenta en {{ max_absence }} decisiones durante el experimento será excluído de forma automática. <strong>Si una persona no toma una decisión en una ronda entonces se toma una decisión al azar de otro de los participantes.</strong></p>
+
+					{% if type != "reminder" %}<p>Encontrará estas instrucciones al final de cada página. A continuación le proporcionaremos algunos ejemplos para asegurarnos de que todo está claro.</p>{% endif %}
+				</div>
+			</div>
+	</div>
+{% endblock %}

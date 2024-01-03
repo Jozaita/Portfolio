@@ -1,0 +1,12 @@
+{% load staticfiles %}
+
+{% block content %}
+	<div class="container-fluid">
+		<div class="panel panel-primary">
+			<div class="panel-body">
+				<h4>Ha sido excluido del experimento</h4>
+				<p>Eso quiere decir que no tomó sus decisiones el primer día o no tomó sus decisiones en {{ inactive_threshold }} o más días del experimento, por lo que ha sido automáticamente excluido. Desafortunadamente esto significa que usted no recibirá ningún dinero por su participación. Aunque le agradecemos que se haya inscrito en este experimento, en el futuro le rogamos que se asegure de tomar sus decisiones.</p>
+			</div>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,104 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+	{% if player.inactive < inactive_threshold %}
+		Fase 6: Resultado de la ronda {{ previous_round_number }}
+	{% endif %}
+{% endblock %}
+
+{% block content %}
+	{% if player.inactive >= inactive_threshold %}
+		{% include Constants.text_Inactive %}
+	{% endif %}
+
+	{% if player.inactive < inactive_threshold %}
+		{% if subsession.round_number in Constants.round_probability_instructions and subsession.round_number > Constants.round_probability_change %}
+			{% include Constants.text_Treatment %}
+		{% endif %}
+
+		<div class="container-fluid">
+			<div class="panel panel-primary">
+				<div class="panel-heading"><b>Decisión de contribución</b></div>
+				<div class="panel-body">
+					<p>Usted comenzó con un capital de <strong>{{ Constants.endowment }}</strong>. <strong>Invirtió {{ previous_contribution }}</strong> y <strong>su grupo contribuyó en total {{ previous_total_contribution }}</strong>. La lista completa de las contribuciones de su grupo se muestra a continuación. Las contribuciones de los demás se ordenan al azar.</p>
+
+					<!--Table of results-->
+					<ul class="list-group">
+						<li class="list-group-item"><b>Contribuciones</b></li>
+						<li class="list-group-item text-success">{{ previous_contribution }} - Su contribución</li>
+					{% if previous_other_contribution0 != None and previous_other_inactive0 < inactive_threshold and previous_other_timeout_Contribute0 == 0 %}
+						<li class="list-group-item">{{ previous_other_contribution0 }}</li>
+					{% elif previous_other_inactive0 >= inactive_threshold or previous_other_timeout_Contribute0 == 1 %}
+						<li class="list-group-item disabled">{{ previous_other_contribution0 }} - Decisión automática</li>
+					{% endif %}
+					{% if previous_other_contribution1 != None and previous_other_inactive1 < inactive_threshold and previous_other_timeout_Contribute1 == 0 %}
+						<li class="list-group-item">{{ previous_other_contribution1 }}</li>
+					{% elif previous_other_inactive1 >= inactive_threshold or previous_other_timeout_Contribute1 == 1 %}
+						<li class="list-group-item disabled">{{ previous_other_contribution1 }} - Decisión automática</li>
+					{% endif %}
+					{% if previous_other_contribution2 != None and previous_other_inactive2 < inactive_threshold and previous_other_timeout_Contribute2 == 0 %}
+						<li class="list-group-item">{{ previous_other_contribution2 }}</li>
+					{% elif previous_other_inactive2 >= inactive_threshold or previous_other_timeout_Contribute2 == 1 %}
+						<li class="list-group-item disabled">{{ previous_other_contribution2 }} - Decisión automática</li>
+					{% endif %}
+					{% if previous_other_contribution3 != None and previous_other_inactive3 < inactive_threshold and previous_other_timeout_Contribute3 == 0 %}
+						<li class="list-group-item">{{ previous_other_contribution3 }}</li>
+					{% elif previous_other_inactive3 >= inactive_threshold or previous_other_timeout_Contribute3 == 1 %}
+						<li class="list-group-item disabled">{{ previous_other_contribution3 }} - Decisión automática</li>
+					{% endif %}
+					{% if previous_other_contribution4 != None and previous_other_inactive4 < inactive_threshold and previous_other_timeout_Contribute4 == 0 %}
+						<li class="list-group-item">{{ previous_other_contribution4 }}</li>
+					{% elif previous_other_inactive4 >= inactive_threshold or previous_other_timeout_Contribute4 == 1 %}
+						<li class="list-group-item disabled">{{ previous_other_contribution4 }} - Decisión automática</li>
+					{% endif %}
+					</ul>
+
+					{% if previous_total_contribution >= Constants.disaster_threshold %}
+						<p>Esto quiere decir que <strong>su grupo acumuló suficientes puntos</strong>. Así que todos se quedan con lo que no han contribuido.</p>
+
+					{% elif previous_total_contribution < Constants.disaster_threshold and previous_unconditional_disaster_value <= previous_disaster_probability %}
+						<p>Esto quiere decir que <strong>su grupo no acumuló suficientes puntos</strong>. El ordenador sacó el numero {{ previous_unconditional_disaster_value_display }} así que <strong>todos ustedes perdieron todos sus puntos</strong>.</p>
+
+					{% elif previous_total_contribution < Constants.disaster_threshold and previous_unconditional_disaster_value > previous_disaster_probability %}
+						<p>Esto quiere decir que <strong>su grupo no acumuló suficientes puntos</strong>. El ordenador sacó el numero {{ previous_unconditional_disaster_value_display }} así que <strong>todos ustedes se quedan con todos los puntos que no contribuyeron</strong>.</p>
+					{% endif %}
+				</div>
+			</div>
+
+			{% if previous_round_number in Constants.uncond_cond_rounds %}
+				<div class="panel panel-primary">
+					<div class="panel-heading"><b>Decisión de contribución hipotética</b></div>
+					<div class="panel-body">
+						<p>Usted comenzó con un capital de <strong>{{ Constants.endowment }}</strong>. <strong>Invirtió {{ previous_conditional_contribution }}</strong> y <strong>su grupo contribuyó en total {{ previous_conditional_total_contribution }}</strong>. La lista completa de las contribuciones de los demás es exactamente igual a la que figura en el cuadro anterior.</p>
+
+						{% if previous_conditional_total_contribution >= Constants.disaster_threshold %}
+							<p>Esto quiere decir que <strong>su grupo acumuló suficientes puntos</strong>. Así que todos se quedan con lo que no han contribuido.</p>
+
+						{% elif previous_conditional_total_contribution < Constants.disaster_threshold and previous_conditional_disaster_value <= previous_disaster_probability %}
+							<p>Esto quiere decir que <strong>su grupo no acumuló suficientes puntos</strong>. El ordenador sacó el numero {{ previous_conditional_disaster_value_display }} así que <strong>todos ustedes perdieron todos sus puntos</strong>.</p>
+
+						{% elif previous_conditional_total_contribution < Constants.disaster_threshold and previous_conditional_disaster_value > previous_disaster_probability %}
+							<p>Esto quiere decir que <strong>su grupo no acumuló suficientes puntos</strong>. El ordenador sacó el numero {{ previous_conditional_disaster_value_display }} así que <strong>todos ustedes se quedan con todos los puntos que no contribuyeron</strong>.</p>
+						{% endif %}
+					</div>
+				</div>
+			{% endif %}
+
+			<div class="panel panel-primary">
+				<div class="panel-body">
+					{% if previous_round_number in Constants.uncond_cond_rounds %}
+						<p>Sus ganancias totales en esta ronda han sido por tanto de <strong>{{ display_payoff }}</strong> (= {{ previous_unconditional_payoff }} + {{ previous_conditional_payoff }}).</p>
+					{% endif %}
+					{% if previous_round_number not in Constants.uncond_cond_rounds %}
+						<p>Sus ganancias totales en esta ronda han sido por tanto de <strong>{{ previous_unconditional_payoff }}</strong>.</p>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+
+		{% next_button %}
+		
+		{% include 'climate_change_game_continuous/text_Instructions_SPA.html' with type="reminder" %}
+	{% endif %}
+{% endblock %}

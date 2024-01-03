@@ -1,0 +1,30 @@
+{% load staticfiles otree_tags %}
+
+{% block content %}
+	<div class="container-fluid">
+		<div class="panel panel-info">
+			<div class="panel-body">
+				<p>Tiene usted la oportunidad de ganar puntos adicionales más abajo. Al final del experimento se le comunicará si ha ganado esos puntos.</p>
+			</div>
+		</div>
+		
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<p><b>¿Cuánto cree que los otros {{ Constants.other_players_per_group }} participantes del grupo piensan que usted va a contribuír?</b></p>
+			</div>
+
+			<div class="panel-body">
+				<p>Use las cajas de más abajo para indicar <strong>cuál es la contribución que el resto de miembros de su grupo piensa que cada uno de ustedes debería hacer</strong> en esta ronda. Introduzca los valores en orden descendente. Por cada respuesta que usted acierte completamente recibirá  {{ Constants.belief_correct_pay }}. Cuánto menos precisa sea su respuesta menos puntos recibirá. </p>
+				<br>
+				{% for field in form %}
+					<div class="row">
+						<div class="col-sm-4" align="left">{% formfield field with label="" %}</div>
+					</div>
+				{% endfor %}
+				<div class="row">
+					<div class="col-sm-12" align="left"><img class="img-responsive" src="{% static "non_linear_cpr_game/NE_spa.png" %}" width="400"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

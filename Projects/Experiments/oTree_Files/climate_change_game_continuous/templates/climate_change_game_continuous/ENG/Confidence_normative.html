@@ -1,0 +1,41 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+	{% if not inactive %}
+	<div class="contained-fluid">
+		<div class="panel panel-primary">
+			<div class="panel-heading"> Module 1 - Page 6/8 
+			</div>
+			</div>
+	{% else %}
+		Disconnected
+	{% endif %}
+{% endblock %}
+
+{% block content %}
+
+	{% if not inactive %}
+
+
+	<div class="container-fluid">
+		<div class="panel panel-success">
+			<div class="panel-body">
+				
+					<p>Please consider one more time your response to the previous question. How confident are you about this answer?</p>
+				<br>
+				<div class="row">
+					<div class="col-sm-4" align="left">{% formfield player.confidence_normative with label=""  %}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+		{% next_button %}
+
+	{% else %}
+	{% include 'climate_change_game_continuous/ENG/Inactive.html' %}
+	{% endif %}
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+	{% if not inactive %}
+	<div class="contained-fluid">
+		<div class="panel panel-primary">
+			<div class="panel-heading"> Module 1 - Page 8/8 
+			</div>
+			</div>
+	{% else %}
+		Disconnected
+	{% endif %}
+{% endblock %}
+
+{% block content %}
+
+	{% if not inactive %}
+
+
+	<div class="container-fluid">
+		<div class="panel panel-success">
+			<div class="panel-body">
+				<p>Please recall the contribution decision you made earlier. You made your decision knowing that the risk of a disaster was {{dis_prob_percentage}} %.For the same scenario (see the characteristics below), how many points would you contribute to the collective pot if the chance that a disaster occurs was different?</p>
+				<br><br>
+				<p>You are assigned to a group with<b> {{other_players_per_group}} other participants.</b>
+				<br>
+				<p>You each receive {{Constants.endowment}} tokens.</p> 
+				<br>
+				<p>Any point contributed reduces the impact of that disaster by <b>{{d_impact_percentage|floatformat:"0"}}%</b>.</p>
+				<br>
+				<p>How much would you contribute if the chance that a disaster occurs would be:</p>
+
+
+				<br>
+				<table class="center">
+				{% for field in form %}
+				<tr>
+						<td>{{field.label}}</td>
+						<td>
+					<div class="row">
+						<div class="col-sm-12" align="left">{% formfield field with label=""  %}</div>
+					</div>
+					</td>
+				</tr>
+				{% endfor %}
+				</table>
+			</div>
+		</div>
+	</div>
+
+		{% include 'climate_change_game_continuous/ENG/Calculator_2.html' %}
+		{% include 'climate_change_game_continuous/ENG/Roulette.html' %}
+    </script>
+			</div>	
+
+
+		{% next_button %}
+
+	{% else %}
+	{% include 'climate_change_game_continuous/ENG/Inactive.html' %}
+	{% endif %}
+{% endblock %}

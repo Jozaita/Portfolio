@@ -1,0 +1,26 @@
+{% extends 'otree/WaitPage.html' %}
+{% load staticfiles otree_tags  %}
+{% block title %}
+{% if not inactive  %}
+Reorganizing groups
+{% else  %}
+Disconnected
+{% endif  %}
+{% endblock %}
+{% block content %}
+{% if not inactive  %}
+<p>
+Wait for the groups to be formed...
+</p>
+
+{% else  %}
+{% include 'climate_change_game_continuous/ENG/Inactive.html'  %}
+{% endif  %}
+{% endblock  %}
+
+
+
+
+
+
+

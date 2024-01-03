@@ -1,0 +1,46 @@
+{% load staticfiles otree_tags %}
+
+{% block content %}
+	<div class="container-fluid">
+		<div class="panel panel-primary">
+			<div class="panel-body">
+				<p>En esta ronda le pedimos que haga otro tipo de decisión de contribución con la cual usted puede ganar puntos adicionales. Esta es una <strong>decision de contribución hipotética</strong>. En estas contribuciones hipotéticas, usted decide cuánto contribuir basándose en <b>lo que los miembros de su grupo piensan</b> y <b>contribuyen</b>. Hay cuatro combinaciones posibles que pueden ocurrir y para cada una de ellas seleccione lo que querría contribuir.</p>
+
+				<p>Puesto que hemos registrado lo que los miembros de su grupo piensan y contribuyen, podemos determinar qué situación ocurrirá. La cantidad que su grupo contribuye proviene de su decisión de contribución en esta ronda. A continuación, implementaremos su decisión en el <strong>escenario que realmente ocurre</strong> y usted recibirá los beneficios resultantes.</p>
+
+				<p>Considere el siguiente ejemplo. Se decide contribuir con 5 en el escenario 1, 10 en el escenario 2, 15 en el escenario 3 y 20 en el escenario 4. En la decisión de contribución en esta ronda, las otras personas de su grupo contribuyen con 10, 10, 10, 10 y 20 y piensan que todos ustedes deberían contribuir con 50, 50, 50, 50 y 50. Esto significa que todos los demás contribuyen menos de 50 y todos piensan que cada uno debe contribuir con 50 o más. De esta manera, su decisión en el Escenario 3, de 15 puntos, es implementada. Combinado con las contribuciones de los miembros de su grupo esto significa que usted no alcanza el umbral. En este ejemplo el ordenador sacó el número 3 con lo que todos ustedes perdieron todos sus puntos.</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<b>Cuanto invertiría si la mayoría ({{ half_players|floatformat:"0" }} o más) de gente de su grupo:</b>
+			</div>
+
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-sm-2" align="left">Escenario 1</div>
+					<div class="col-sm-6" align="left">aporta <strong>{{ half_spending }} o más</strong> cada uno y <br>cree que usted debería aportar <strong>{{ half_spending }} o más</strong> </div>
+					<div class="col-sm-4" align="left">{% formfield player.contribution_hh with label="" %}</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-2" align="left">Escenario 2</div>
+					<div class="col-sm-6" align="left">aporta <strong>{{ half_spending }} o más</strong> cada uno y <br>cree que usted debería aportar <strong>menos de {{ half_spending }}</strong> </div>
+					<div class="col-sm-4" align="left">{% formfield player.contribution_hl with label="" %}</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-2" align="left">Escenario 3</div>
+					<div class="col-sm-6" align="left">aporta <strong>menos de {{ half_spending }}</strong> cada uno y <br>cree que usted debería aportar <strong>{{ half_spending }} o más</strong> </div>
+					<div class="col-sm-4" align="left">{% formfield player.contribution_lh with label="" %}</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-2" align="left">Escenario 4</div>
+					<div class="col-sm-6" align="left">aporta <strong>menos de {{ half_spending }}</strong> cada uno y <br>cree que usted debería aportar <strong>menos de {{ half_spending }}</strong> </div>
+					<div class="col-sm-4" align="left">{% formfield player.contribution_ll with label="" %}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

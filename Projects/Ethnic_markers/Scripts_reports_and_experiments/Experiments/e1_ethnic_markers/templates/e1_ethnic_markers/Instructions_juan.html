@@ -1,0 +1,29 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+{% block title %}
+Instrucciones 
+{% endblock %} 
+{% block content %}
+<p>Bienvenido al  experimento, muchas gracias por su colaboración.</p>
+<p><b>Le recordamos que con objetivo de obtener grupos completos se han convocado más plazas de las necesarias para el juego. En caso de no ser seleccionados, una pantalla les informará de 
+	ello y recibirán un pago por participar.</b></p>
+<p> Este experimento consta de dos partes. A continuación le daremos las instrucciones de la primera parte. Verá las instrucciones de la segunda parte una vez terminada la primera parte.</p>
+<p><b>El experimento no comenzará hasta que todos los usuarios hayan leído estas instrucciones, mientras tanto aguardará en una pantalla de espera. </b></p>
+<p>Esta primera parte consiste de varias rondas. Antes de empezar, se le
+asignará un sombrero de un color, que será el mismo durante todas las rondas.
+Su sombrero será visible para todos los participantes. Ni el sombrero ni su
+color conllevan pago alguno. </p>
+<p>Cada ronda comienza con una pregunta breve, que tendrá <b>20 segundos</b> para
+responder. A continuación usted será emparejado con otro participante, que será
+distinto cada vez, y podrá usted ver de qué color es el sombrero de su
+pareja.</p>
+<p>Cada quince rondas, se le preguntará acerca de su percepción del experimento.</p>
+<p>Si no toma una decisión, el sistema la tomará por usted. <b>Si esto sucede más de tres veces, su pantalla quedará bloqueada y no podrá seguir jugando, por lo que no cobrará nada</b>. Le pedimos encarecidamente que no se ausente en mitad del experimento. </p>
+<p> En cada ronda, usted y su pareja deberán <b>elegir entre dos formas geométricas</b>, para lo que tendrán <b>20 segundos. Si ambos eligen la misma, recibirán un pago de 1 puntos. Si eligen diferentes formas geométricas, ambos perderán medio punto. No hay pagos negativos, por lo que el pago mínimo que obtendrá es cero</b>. No tiene ninguna manera de comunicarse con su pareja. </p>
+<p>Tras la última ronda, se incluirá una  pregunta de percepción que le
+permitirá ganar un pago extra. </p>
+<p>La tasa de conversión entre puntos y euros es de un euro por cada 8 puntos. </p>
+<p>Cuando pulse siguiente, comenzará la primera parte. </p>
+<p>Muchas gracias por su atención. </p>
+{% next_button %}
+ {% endblock %}

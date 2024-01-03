@@ -1,0 +1,63 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+{% if not inactive %}
+Ejemplos
+{% else %}
+Desconectado
+{% endif %}
+{% endblock %}
+
+{% block content %}
+{% if not inactive %}
+		<div class="container-fluid">
+			<div class="panel panel-primary">
+				<div class="panel-body">
+					<p>Recuerde que en cada ronda, usted será reagrupado, formando grupos de {{ Constants.other_players_per_group }} participantes. Cada participante recibe {{ Constants.endowment }} tokens. Más abajo, le exponemos posibles situaciones que pueden ocurrir durante el experimento. Los cálculos en cada ejemplo se pueden consultar en cada una celdas de la tabla de ganancias. Puede encontrar la tabla de ganancias  <a href="{% static "non_linear_cpr_game/CPR_Table_Payoffs.pdf"  %}" target="_blank">aquí</a> .
+					</p>
+
+					<h4>Ejemplo 1</h4>
+
+					<p>Usted deposita <b>0 tokens</b> en la caja común y los otros participantes depositan  <b>0 tokens</b> en la caja común en total. Como consecuencia, la cantidad total depositada en la caja común es  <b>0 tokens</b>. La cantidad total en su cuenta privada es 30 (=30-0). Sus ganancias finales son:</p>
+					<ul>
+						<li>Sus ganancias de la caja común = 0 (ver primera columna y fila de la tabla)</li>
+						<li>Sus ganancias de la cuenta privada = 30</li>
+						<li>Sus ganancias totales (privadas + comunes) = 30 </li>
+					</ul>
+
+					<h4>Ejemplo 2</h4>
+					<p>Usted deposita <b>0 tokens</b> en la caja común y los otros participantes depositan <b>150 tokens</b> en la caja común en total. Como consecuencia, la cantidad total depositada es <b>150 tokens</b>. La cantidad que usted deposita en su cuenta privada es 30 (=30-0). Sus ganancias finales son:</p>
+					<ul>
+						<li>Sus ganacias de la caja común = 0 (ver primera columna - última fila de la tabla) </li>
+						<li>Sus ganancias de la cuenta privada = 30</li>
+						<li>Sus ganancias totales (privadas + comunes) = 30 </li>
+					</ul>
+					<h4>Ejemplo 3</h4>
+					<p>Usted deposita <b>30 tokens</b> en  la caja común y el resto de participantes de su grupo depositan <b>0 tokens</b>en la caja común entre todos. Como consecuencia, la cantidad total depositada en la caja común es 30 tokens. La cantidad que usted deposita en la cuenta privada 0 (=30-30). Sus ganancias finales son:</p>
+					<ul>
+						<li>Sus ganancias de la caja común = 375.3 (ver última columna - primera fila de la tabla)</li>
+						<li>Sus ganancias de la cuenta privada  = 0</li>
+						<li>Sus ganancias totales (privadas + comunes) = 375.3</li>
+					</ul>
+
+					<h4>Ejemplo 4</h4>
+					<p>Usted deposita <b>30 tokens</b> en la caja común y el resto de participantes de su grupo depositan <b>150 tokens</b> en la caja común entre todos. Como consecuencia, la cantidad total depositada es 180 tokens. La cantidad depositada en su cuenta privada es  0 (=30-30). Sus ganancias finales son:</p>
+
+					<ul>
+						<li>Sus ganancias de la caja común = 1.8 (ver última columna - última fila de la tabla)</li>
+						<li>Sus ganancias de la cuenta privada = 0</li>
+						<li>Sus ganancias totales (privadas + comunes) = 0</li>
+					</ul>
+
+				</div>
+			</div>
+		</div>
+
+		{% next_button %}
+		
+		{% include 'non_linear_cpr_game/text_Instructions_SPA.html' with type="reminder"%}
+{% else %}
+{% include 'non_linear_cpr_game/Inactive_SPA.html' %}
+{% endif %}
+{% endblock %}

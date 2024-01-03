@@ -1,0 +1,21 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+{% block title %}
+{% if not inactive  %}
+Pregunta
+{% else  %}
+Desconectado
+{% endif  %}
+{% endblock %}
+{% block content %}
+{% if not inactive  %}
+<p>En los próximos 30 segundos, tendrá que estimar  la cantidad
+de puntos existentes en la imagen. En caso de acertar recibirá un pago extra
+de 10 puntos. Si su respuesta es cercana al valor real, recibirá un pago extra más pequeño. En la siguiente página se le aportarán también las opiniones de
+otros dos participantes del experimento elegidos al azar.</p>
+<img class="featurette-image img-responsive" src="{% static "ethnic_markers/bias/Red_puntos_2.png" %}"alt="bias">
+{% next_button %}
+{% else  %}
+{% include 'e1_ethnic_markers/Inactive.html'  %}
+{% endif %}
+{% endblock  %}

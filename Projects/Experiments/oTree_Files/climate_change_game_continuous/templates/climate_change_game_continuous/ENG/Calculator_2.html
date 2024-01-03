@@ -1,0 +1,93 @@
+
+<style>
+th, td {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table, th, td {
+  border: 1px solid;
+}
+
+</style>
+
+<script>
+function calcular() {
+    var arg1 = parseFloat(document.getElementById("slider1").value);
+    var arg2 = parseFloat(document.getElementById("slider2").value);
+    
+    document.getElementById('output1').innerHTML = arg1
+    document.getElementById('output2').innerHTML = arg2
+	
+    var resultado = (10-arg1) + (arg1+arg2)/5;
+    var resultado_dis = ((10-arg1) + (arg1+arg2)/5)*0.02*(arg1+arg2);
+    var resultado_otros = (40-arg2) + (arg1+arg2)/5;
+    var resultado_otros_dis = ((40-arg2) + (arg1+arg2)/5)*0.02*(arg1+arg2); 
+    
+    var total_contribution = arg1 + arg2;
+    var impact = 100 - 0.02 * 100 * (arg1 + arg2);
+
+    document.getElementById("impact").textContent = impact.toFixed(0);
+    document.getElementById("total_contribution").textContent = total_contribution.toFixed(0);
+    document.getElementById("resultado").textContent = resultado.toFixed(2);
+    document.getElementById("resultado_dis").textContent = resultado_dis.toFixed(2)
+    document.getElementById("resultado_otros").textContent = resultado_otros.toFixed(2);
+    document.getElementById("resultado_otros_dis").textContent = resultado_otros_dis.toFixed(2)
+    
+}
+</script>
+
+<div class="panel panel-primary">
+    <div class="panel-heading" style="text-align: center">
+        <h3>Results Calculator</h3>
+    </div>
+
+<div class="panel-body" style="text-align: center">
+    <h4>Risk of disaster: 10 %</h4>
+    <h4>Impact of disaster: <span id="impact"></span> %</h4> 
+    <h4>Total contribution: <span id="total_contribution"></span></h4>
+
+    <div class="center">
+        <table class="center">
+<thead>
+    <tr>
+    	<th style="text-align: center"></th>
+        <th style="text-align: center">Contribution</th>
+        <th style="text-align: center">Earnings with disaster (each player)</th>
+        <th style="text-align: center">Earnings without disaster (each player)</th>
+    </tr>
+</thead>
+            <tbody>
+<tr>
+    <td >You:</td>
+    <td class="column-spacing">
+        <input type="range" min="0" max="10" value="5" class="slider" id="slider1" data-slider="1" oninput="calcular()">
+         <output id="output1"></output>
+    </td>
+    <td style="text-align: center"><span id="resultado_dis"></span></td>
+    <td style="text-align: center"><span id="resultado"></span></td>
+</tr>
+<tr>
+    <td>Rest of players:</td>
+    <td class="column-spacing">
+        <input type="range" min="0" max="40" value="20" class="slider" id="slider2" data-slider="2" oninput="calcular()">
+         <output id="output2"></output>
+    </td>
+    <td style="text-align: center"><span id="resultado_otros"></span></td>
+    <td style="text-align: center"><span id="resultado_otros_dis"></span></td>
+</tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+
+

@@ -1,0 +1,30 @@
+{% load staticfiles otree_tags %}
+
+{% block content %}
+	<div class="container-fluid">
+		<div class="panel panel-info">
+			<div class="panel-body">
+				<p>Ahora tiene la oportunidad de ganar puntos adicionales. Al final del experimento se le dirá si ha ganado estos puntos.</p>
+			</div>
+		</div>
+		
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<p><b>¿Cuánto creen las otras {{ Constants.other_players_per_group }} personas de su grupo que debería contribuir en esta ronda?</b></p>
+			</div>
+
+			<div class="panel-body">
+				<p>Use las cajas de abajo para indicar <strong>lo que cada una de las personas de su grupo piensa que cada uno de ustedes debería contribuir</strong>. Ponga el valor más alto en el recuadro de la parte superior y luego clasifique las contribuciones en orden descendente. Puede introducir el mismo valor para varias personas. En ese caso el orden para esas personas no importa. Clasificaremos las respuestas de las otras personas de su grupo en esta ronda ('¿Cuanto debería invertir cada persona de su grupo, incluyéndole a usted?') y compararemos cada una de ellas con sus respuestas. Por cada respuesta que usted estime completamente correcta obtendrá {{ Constants.belief_correct_pay }}. Esto significa que puedes ganar un máximo de {{ max_ne_earning }}. Cuanto menos precisa sea su respuesta, menos puntos recibirá. Si su respuesta difiere de los valores reales en más de {{ Constants.belief_correct_pay }} entonces usted recibe 0 para estas respuestas.</p>
+				<br>
+				{% for field in form %}
+					<div class="row">
+						<div class="col-sm-4" align="left">{% formfield field  %}</div>
+					</div>
+				{% endfor %}
+				<div class="row">
+					<div class="col-sm-12" align="left"><img class="img-responsive" src="{% static "climate_change_game/NE_spa.png" %}" width="400"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

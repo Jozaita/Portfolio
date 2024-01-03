@@ -1,0 +1,61 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+{% if not inactive %}
+	Resultado ronda {{ round_number }}
+{% else %}
+Desconectado
+{% endif %}
+{% endblock %}
+
+{% block content %}
+{% if not inactive %}
+{% if player.disaster_happened == 0 %}
+		<div class="container-fluid">
+			<div class="panel panel-primary">
+				<div class="panel-heading"><b>Decisión de contribución</b></div>
+				<div class="panel-body">
+				<p>Su grupo ha llegado al límite común de aportaciones, y han conservado todas sus ganancias. </p>
+				</div>
+			</div>
+		</div>
+		{% elif player.disaster_happened == 1 %}
+		<div class="container-fluid">
+			<div class="panel panel-primary">
+				<div class="panel-heading"><b>Decisión de contribución</b></div>
+				<div class="panel-body">
+					<p>Su grupo no ha llegado al límite común de aportaciones, y se ha producido un desastre. Todos los miembros del grupo han perdido sus ganancias de esta ronda. </p>
+				</div>
+			</div>
+		</div>
+{% endif %}
+{% if player.disaster_happened != 1 %}
+		<div class="container-fluid">
+			<div class="panel panel-primary">
+				<div class="panel-heading"><b>Decisión de contribución</b></div>
+				<div class="panel-body">
+					<p>Usted empezó con una cantidad total de <strong>{{ Constants.endowment }}</strong>. <strong>Usted contribuyó {{ player.contribution }}</strong> a la caja común y <strong>su grupo contribuyó un total de {{ player.total_contribution }}</strong>. La lista completa de las contribuciones de su grupo aparece más abajo, junto con el hecho de si están inactivos. Las contribuciones del resto de participantes están ordenadas al azar.</p>					<ul class="list-group">
+						<li class = "list-group-item text-success">{{player.contribution}} - Su contribución </li>
+						<li class ="list-group-item"><b>Contribuciones de los miembros de su grupo</b></li>
+						<li class = "list-group-item"><b>Contribución | ¿Está inactivo? (&#10060; indicates inactivity) </b></li>
+						{% for item in contribution_inactive %}
+						<li class ="list-group-item">{{item}}</li>
+						{% endfor %}
+					</ul>
+			<div class="panel panel-primary">
+				<div class="panel-body">
+					<br>
+						<p>Sus ganancias de esta ronda son por tanto <strong>{{ player.unconditional_payoff|floatformat:1 }}</strong>.</p>
+				</div>
+			</div>
+		</div>
+		{% else %}
+		{% endif %}
+		{% next_button %}
+		
+		{% include 'non_linear_cpr_game/text_Instructions_SPA.html' with type="reminder" %}
+{% else %}
+{% include 'non_linear_cpr_game/Inactive_SPA.html' %}
+{% endif %}
+{% endblock %}

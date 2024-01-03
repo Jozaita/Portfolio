@@ -1,0 +1,49 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}  CONSENTIMIENTO PARA PARTICIPAR EN LA INVESTIGACIÓN {% endblock %}
+
+{% block content %}
+
+Va usted a participar en un estudio de investigación realizado por Anxo Sánchez, catedrático de matemática aplicada del Departamento de Matemáticas de la Universidad Carlos III de Madrid. Su participación en este estudio es totalmente voluntaria. Por favor, lea la siguiente información y pregunte sobre cualquier cosa que no entienda, antes de decidir si participará o no.
+
+<h3>PROPÓSITO DEL ESTUDIO</h3>
+Nuestros experimentos, con carácter general, se enmarcan en el proyecto IBSEN, que ha sido financiado por la UE y diseñado para ayudar a entender el comportamiento humano. Más información acerca de los objetivos de IBSEN y los avances previstos en el conocimiento está disponible en <a target="_blank" href="https://http://www.ibsen-h2020.eu">http://www.ibsen-h2020.eu</a>.
+El propósito de este experimento en concreto es recoger información sobre el comportamiento colectivo en grupos de personas.
+
+<h3>PARTICIPANTES</h3>
+Población general mayor de 18 años.
+
+<h3>PROCEDIMIENTOS</h3>
+Si usted participa como voluntario para participar en este estudio, se le pedirá que tome decisiones sencillas a través de esta interfaz de computadora o teléfono móvil en un contexto en el que esas decisiones afectarán a sus posibilidades de obtener un beneficio económico, así como a los beneficios económicos de otros voluntarios. Sus decisiones serán anónimas, no podrán asociarse con su identidad, y usted no sufrirá ninguna pérdida económica. Por su participación recibirá una cantidad fija de {{ Constants.payment_show_up_fee }} euros, más otra variable que dependerá de sus decisiones y de las de los demás participantes. En media, los participantes en el experimento ganarán en torno a 15 euros, pero la cantidad percibida por cada participante variará y no se garantiza una cantidad mínima más allá de la que recibirá por su participación. Recibirá el pago a través de PayPal tras su participación, por lo que necesitará tener una cuenta de usuario de dicha plataforma de pagos.
+
+<h3>POSIBLES RIESGOS E INCOMODIDADES</h3>
+No hay riesgos o molestias previsibles.
+
+<h3>CONFIDENCIALIDAD</h3>
+Los datos sobre sus acciones durante su participación en el experimento serán recopilados y utilizados para fines de investigación. Estos datos se almacenarán sin que se puedan asociar a su identidad personal, y se colocarán tras completarse el estudio en un Depósito de Datos Abierto con el fin de compartirlos con otros investigadores y no con fines comerciales, y en cumplimiento de las obligaciones de los investigadores establecidos por la política de la UE.
+
+<h3>PARTICIPACIÓN Y RETIRADA</h3>
+Su participación en este estudio de investigación es voluntaria. Usted puede negarse a participar sin penalización. Si decide participar, es libre de detenerse en cualquier momento sin penalización, simplemente deteniéndose y/o comunicándoselo al investigador. Si usted no concluye el experimento no recibirá pago alguno.
+Al participar en el experimento, usted declara tener al menos 18 años de edad y ser plenamente capaz y competente para entender los términos y condiciones del presente experimento.
+
+<h3>IDENTIFICACIÓN DE LOS INVESTIGADORES</h3>
+Si tiene alguna pregunta o preocupación sobre esta investigación, por favor contacte con Anxo Sánchez en <a href="mailto:anxo@math.uc3m.es">anxo@math.uc3m.es</a>.
+
+<h3>INFORMACIÓN BÁSICA SOBRE PROTECCIÓN DE DATOS</h3>
+RESPONSABLE DEL TRATAMIENTO: Universidad Carlos III de Madrid. <br>
+IDENTIFICACIÓN DEL TRATAMIENTO: Comportamiento social (GISC) <br>
+FINALIDAD:  Realizar experimentos sobre comportamiento humano con incentivos económicos. Los experimentos plantean situaciones hipotéticas a participantes voluntarios que reciben un pago en función de sus acciones en dichas situaciones. Los datos son necesarios para realizar los pagos y justificar el gasto con la entidad financiadora.
+<br>
+EJERCICIO DE DERECHOS: Podrá ejercer sus derechos de acceso, rectificación, supresión, limitación, portabilidad y oposición a su tratamiento, mediante el envío de un correo a la siguiente dirección: <a href="mailto:dpd@uc3m.es">dpd@uc3m.es</a>.
+<br>
+INFORMACIÓN ADICIONAL: Puede consultar la información adicional y detallada sobre nuestra Política de Privacidad en <a target="_blank" href="https://www.uc3m.es/protecciondedatos">https://www.uc3m.es/protecciondedatos</a>
+
+<hr>
+
+He leído la información proporcionada anteriormente. Al hacer click en el botón siguiente, comenzaré a participar en el experimento, para lo que manifiesto mi acuerdo voluntario para participar en este estudio de investigación en las condiciones antes indicadas.
+<br><br>
+
+{% next_button %}
+
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+	{% if player.inactive < inactive_threshold %}
+		Fase 6	
+	{% endif %}
+{% endblock %}
+
+{% block content %}
+	{% if player.inactive >= inactive_threshold %}
+		{% include Constants.text_Inactive %}			
+	{% endif %}
+
+	{% if player.inactive < inactive_threshold %}
+		<div class="container-fluid">
+			<div class="panel panel-primary">
+				<div class="panel-body">
+					<p>Por favor haga clic en el botón "Siguiente" para continuar con el experimento.</p>
+				</div>
+			</div>
+		</div>
+		
+		{% next_button %}
+	{% endif %}
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+{% if not inactive %}s
+	<div class="contained-fluid">
+		<div class="panel panel-primary">
+			<div class="panel-heading"> Resultados Finales 
+			</div>
+			</div>
+{% else %}
+Desconectado
+{% endif %}
+{% endblock %}
+
+{% block content %}
+{% if not inactive %}
+
+
+		<div class="container-fluid">
+			<div class="panel panel-primary">
+				<div class="panel-heading"><b>Resultado total</b></div>
+				<div class="panel-body">
+				<p>Durante este juego usted ha obtenido un total de {{climate_payoff|floatformat:"2"}} tokens, lo cual se traduce en un total de {{climate_euros|floatformat:"2"}} euros. </p>
+				<br>
+				<br>
+				<p>Con la inclusión de todos los juegos, ha obtenido un total de {{global_payoff|floatformat:"2"}} tokens, lo cual se traduce en {{global_euros|floatformat:"2"}} euros.
+				<br>
+				<p>Por favor, incluya en las casillas de abajo su cuenta de PayPal, junto con los comentarios que quiera incluír acerca del experimento.</p>
+				{% formfield player.paypal %}
+				{% formfield player.comments %}
+				</div>
+			</div>
+		</div>
+
+		
+{% else %}
+{% include 'climate_change_game_continuous/Inactive_SPA.html' %}
+{% endif %}
+{% endblock %}

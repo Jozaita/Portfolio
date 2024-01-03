@@ -1,0 +1,27 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+	{% if not inactive %}
+	<div class="contained-fluid">
+		<div class="panel panel-primary">
+			<div class="panel-heading"> Fase 6: Ronda {{ subsession.round_number }}, nivel de riesgo : {{risk_level}} %. 
+			</div>
+			</div>
+	{% else %}
+		Desconectado
+	{% endif %}
+{% endblock %}
+
+{% block content %}
+	{% if not inactive %}
+		
+		{% include 'climate_change_game_continuous/text_NE.html' %}
+
+		{% next_button %}
+
+		{% include 'climate_change_game_continuous/text_Instructions_SPA.html' with type="reminder" %}	
+	{% else %}
+	{% include 'climate_change_game_continuous/Inactive_SPA.html' %}
+	{% endif %}
+{% endblock %}

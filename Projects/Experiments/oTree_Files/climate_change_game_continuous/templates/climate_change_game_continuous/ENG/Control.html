@@ -1,0 +1,221 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+	{% if not inactive %}
+	<div class="contained-fluid">
+		<div class="panel panel-primary">
+			<div class="panel-heading">Questions</div>
+		</div>
+	</div>
+	{% else %}
+		Disconnected
+	{% endif %}
+{% endblock %}
+
+{% block content %}
+	{% if not inactive %}
+		<div class="container-fluid">
+			<div class="panel panel-primary">
+				<div class="panel-body">
+					<p>Please answer the questions below. They are designed to help you better understand the instructions. Your answers will not have any consequences for your payments.  We remind you that you can see the complete instructions for this section in a box at the bottom of this page.
+				</div>
+			</div>
+
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<b>Choose your answers here:</b>
+				</div>
+
+				<div class="table-responsive">
+					<table class="table">
+						<tr>
+							<td>{{ question_1_text}}</td>
+							<td>{% formfield player.question_1 with label="" %}</td>
+						</tr>
+						<tr>
+							<td>{{ question_2_text }}</td>
+							<td>{% formfield player.question_2 with label="" %}</td>
+						</tr>
+						<tr>
+							<td>{{ question_3_text }}</td>
+							<td>{% formfield player.question_3 with label="" %}</td>
+						</tr>
+						<tr>
+							<td>{{ question_4_text }}</td>
+							<td>{% formfield player.question_4 with label="" %}</td>
+						</tr>
+							<td>{{ question_5_text }}</td>
+							<td>{% formfield player.question_5 with label="" %}</td>
+						</tr>
+						<tr>
+							<td>{{ question_6_text }}</td>
+							<td>{% formfield player.question_6 with label="" %}</td>
+						</tr>
+						<tr>
+							<td>{{ question_7_text }}</td>
+							<td>{% formfield player.question_7 with label="" %}</td>
+						</tr>
+						<tr>
+							<td>{{ question_8_text }}</td>
+							<td>{% formfield player.question_8 with label="" %}</td>
+						</tr>
+						<tr>
+							<td>{{ question_9_text }}</td>
+							<td>{% formfield player.question_9 with label="" %}</td>
+						</tr>
+						<tr>
+							<td>{{ question_10_text }}</td>
+							<td>{% formfield player.question_10 with label="" %}</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+
+
+
+<script>
+function calcular() {
+            var arg1 = parseFloat(document.getElementById("slider1").value);
+            var arg2 = parseFloat(document.getElementById("slider2").value);
+            var arg3 = parseFloat(document.getElementById("slider3").value);
+            var arg4 = parseFloat(document.getElementById("slider4").value);
+            var arg5 = parseFloat(document.getElementById("slider5").value);
+            var pro1_nodis = (10-arg1) + (arg1+arg2+arg3+arg4+arg5)/5; // Aquí puedes definir la función que desees
+            var pro2_nodis = (10-arg2) + (arg1+arg2+arg3+arg4+arg5)/5; // Aquí puedes definir la función que desees
+            var pro3_nodis = (10-arg3) + (arg1+arg2+arg3+arg4+arg5)/5; // Aquí puedes definir la función que desees
+            var pro4_nodis = (10-arg4) + (arg1+arg2+arg3+arg4+arg5)/5; // Aquí puedes definir la función que desees
+            var pro5_nodis = (10-arg5) + (arg1+arg2+arg3+arg4+arg5)/5; // Aquí puedes definir la función que desees
+            var pro1_dis = ((10-arg1) + (arg1+arg2+arg3+arg4+arg5)/5)*0.02*(arg1+arg2+arg3+arg4+arg5);
+            var pro2_dis = ((10-arg2) + (arg1+arg2+arg3+arg4+arg5)/5)*0.02*(arg1+arg2+arg3+arg4+arg5);
+            var pro3_dis = ((10-arg3) + (arg1+arg2+arg3+arg4+arg5)/5)*0.02*(arg1+arg2+arg3+arg4+arg5);
+            var pro4_dis = ((10-arg4) + (arg1+arg2+arg3+arg4+arg5)/5)*0.02*(arg1+arg2+arg3+arg4+arg5);
+            var pro5_dis = ((10-arg5) + (arg1+arg2+arg3+arg4+arg5)/5)*0.02*(arg1+arg2+arg3+arg4+arg5);
+            var total_contribution = arg1 + arg2 + arg3 + arg4 + arg5;
+            var impact_reduction = 0.02*100*(arg1+arg2+arg3+arg4+arg5);
+
+            document.getElementById("impact_reduction").textContent = impact_reduction.toFixed(0);
+            document.getElementById("total_contribution").textContent = total_contribution.toFixed(0);
+            document.getElementById("pro1_nodis").textContent = pro1_nodis.toFixed(2);
+            document.getElementById("pro1_dis").textContent = pro1_dis.toFixed(2);
+            document.getElementById("pro2_nodis").textContent = pro2_nodis.toFixed(2);
+            document.getElementById("pro2_dis").textContent = pro2_dis.toFixed(2);
+            document.getElementById("pro3_nodis").textContent = pro3_nodis.toFixed(2);
+            document.getElementById("pro3_dis").textContent = pro3_dis.toFixed(2); 
+            document.getElementById("pro4_nodis").textContent = pro4_nodis.toFixed(2); 
+            document.getElementById("pro4_dis").textContent = pro4_dis.toFixed(2); 
+            document.getElementById("pro5_nodis").textContent = pro5_nodis.toFixed(2); 
+            document.getElementById("pro5_dis").textContent = pro5_dis.toFixed(2); 
+        }
+</script>
+
+			<div class="panel panel-primary">
+				<div class="panel-heading" style="text-align: center">
+   <h1>Results Calculator</h1>
+				</div>
+				</div>
+				<div class = "panel-body" style="text-align: center">
+
+				    <p>Move the sliders to initialize the calculator. </p><br>
+
+    <label for="impact_reduction">Impact reduction :</label>
+    <span id="impact_reduction"></span><label>%</label>
+    <br>
+    <label for="total_contribution">Total contribution :</label>
+    <span id="total_contribution"></span><br>
+    <label class="slider-label" for="slider1">Contribution participant 1:</label>
+    <input type="range" min="0" max="10" value="5" class="slider" id="slider1"><br>
+    <span class="slider-value" id="slider1Value">5</span><br><br>
+
+    <label class="slider-label" for="slider2">Contribution participant 2:</label>
+    <input type="range" min="0" max="10" value="5" class="slider" id="slider2"><br>
+    <span class="slider-value" id="slider2Value">5</span><br><br>
+
+    <label class="slider-label" for="slider3">Contribution participant 3:</label>
+    <input type="range" min="0" max="10" value="5" class="slider" id="slider3"><br>
+    <span class="slider-value" id="slider3Value">5</span><br><br>
+
+    <label class="slider-label" for="slider4">Contribution participant 4:</label>
+    <input type="range" min="0" max="10" value="5" class="slider" id="slider4"><br>
+    <span class="slider-value" id="slider4Value">5</span><br><br>
+
+    <label class="slider-label" for="slider5">Contribution participant 5:</label>
+    <input type="range" min="0" max="10" value="5" class="slider" id="slider5"><br>
+    <span class="slider-value" id="slider5Value">5</span><br><br>
+
+   
+
+    <label for="pro1_no dis">Earnings participant 1     (without disaster):</label>
+    <span id="pro1_nodis"></span> <b>(with disaster):</b> <span id="pro1_dis"></span>
+    <br>
+   
+    <label for="pro2_no dis">Earnings participant 2     (without disaster):</label>
+    <span id="pro2_nodis"></span> <b>(with disaster):</b> <span id="pro2_dis"></span>
+    <br>
+   
+    <label for="pro3_no dis">Earnings participant 3     (without disaster):</label>
+    <span id="pro3_nodis"></span> <b>(with disaster):</b> <span id="pro3_dis"></span>
+    <br>
+   
+    <label for="pro4_no dis">Earnings participant 4     (without disaster):</label>
+    <span id="pro4_nodis"></span> <b>(with disaster):</b> <span id="pro4_dis"></span>
+    <br>
+   
+    <label for="pro5_no dis">Earnings participant 5     (without disaster):</label>
+    <span id="pro5_nodis"></span> <b>(with disaster):</b> <span id="pro5_dis"></span>
+    <br>
+   
+				</div>
+
+        <script>
+        var slider1 = document.getElementById("slider1");
+        var slider1Value = document.getElementById("slider1Value");
+        slider1Value.textContent = slider1.value;
+
+        slider1.oninput = function() {
+            slider1Value.textContent = this.value;
+            calcular(); // Recalcular automáticamente al mover el deslizador
+        }
+
+        var slider2 = document.getElementById("slider2");
+        var slider2Value = document.getElementById("slider2Value");
+        slider2Value.textContent = slider2.value;
+
+        slider2.oninput = function() {
+            slider2Value.textContent = this.value;
+            calcular(); // Recalcular automáticamente al mover el deslizador
+ }
+        var slider3 = document.getElementById("slider3");
+        var slider3Value = document.getElementById("slider3Value");
+        slider3Value.textContent = slider3.value;
+
+        slider3.oninput = function() {
+            slider3Value.textContent = this.value;
+            calcular(); // Recalcular automáticamente al mover el deslizador
+	}
+        var slider4 = document.getElementById("slider4");
+        var slider4Value = document.getElementById("slider4Value");
+        slider4Value.textContent = slider4.value;
+
+        slider4.oninput = function() {
+            slider4Value.textContent = this.value;
+            calcular(); // Recalcular automáticamente al mover el deslizador
+	}
+        var slider5 = document.getElementById("slider5");
+        var slider5Value = document.getElementById("slider5Value");
+        slider5Value.textContent = slider5.value;
+
+        slider5.oninput = function() {
+            slider5Value.textContent = this.value;
+            calcular(); // Recalcular automáticamente al mover el deslizador
+        }
+    </script>
+			</div>
+		{% next_button %}
+
+		{% include 'climate_change_game_continuous/ENG/text_Instructions_I.html' with type="reminder"%}
+	{% else %}
+	{% include 'climate_change_game_continuous/ENG/Inactive.html' %}
+	{% endif %}
+{% endblock %}

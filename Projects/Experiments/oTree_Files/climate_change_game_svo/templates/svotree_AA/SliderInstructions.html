@@ -1,0 +1,61 @@
+{% load otree_tags staticfiles %}
+
+{% block styles %}
+	<link href="{% static 'svotree/css/custom.css' %}" rel="stylesheet"/>
+{% endblock %}
+
+<div class="panel panel-primary" id="info">
+		<h4>Instrucciones</h4>
+
+			<p>Usted ha sido emparejado con otra persona elegida al azar, a la que nos referiremos como <strong>contraparte</strong>. Usted no conoce a su contraparte ni a la inversa, y continuarán sin conocerse tras el experimento. Todas sus elecciones son completamente confidenciales.</p>
+		
+			<p>Va usted a tomar una serie de decisiones sobre distribución de recursos entre usted y su contraparte. Para cada una de las preguntas que verá a continuación, por favor indique la distribución que usted prefiere <strong>moviendo la correspondiente escala deslizante hasta la posición del reparto de su elección</strong>. Para cada pregunta sólo puede dar una respuesta, la elegida con la escala deslizante.</p>
+
+			<p>Sus decisiones conllevan una asignación de dinero tanto para usted como para su contraparte. En el ejemplo que figura debajo, se ha elegido distribuir dinero de manera que el que hace la elección recibe 50 puntos, mientras que su contraparte recibe 40 puntos.</p>
+
+			<p>No hay respuestas correctas ni equivocadas, esto se refiere a sus preferencias. Tras hacer cada decisión, <strong>confírmela con el botón “Confirmar” a la derecha de la escala</strong>. Como puede ver, sus decisiones influirán tanto en la cantidad de puntos que recibe como en la cantidad de puntos que recibe su contraparte. Cuando haya tomado todas sus decisiones, <strong>presione “Siguiente” en la parte inferior de la pantalla </strong>para terminar esta fase.</p>
+
+			<p>Al final del experimento, se decidirá al azar una persona de cada pareja, y se aplicará una de las decisiones que esta persona tomó. Esto determinará las ganancias que ambos recibirán en esta fase. En otras palabras, si se le selecciona a usted, una de sus decisiones determinará los pagos que recibirán usted y su contraparte. En caso contrario, serán las decisiones de su contraparte las que los determinen. La selección será al azar y ninguno de los dos sabrá de antemano qué decisión se aplicará.</p>
+
+			<p>Contáctenos <a href="mailto:{{ email }}">{{ email }}</a> si tiene alguna pregunta.</p>
+
+				<div class="panel-body" style="margin-top: 2em; margin-bottom: 2em; border: 1px solid #ddd">
+			 <div class="row"">
+					 <div class="col-sm-2" align="center"><strong>EJEMPLO</strong></div>
+					 <div class="col-sm-1"></div>
+					 <div class="col-sm-7"></div>
+					 <div class="col-sm-2"></div>
+			 </div>
+			 <div class="row">
+					 <div class="col-sm-2" align="center">Usted recibe</div>
+					 <div class="col-sm-1" align="center"><span class="slider-value">50</span></div>
+					 <div class="col-sm-7"><div class="slider-reference"><div class="value-start">30</div><div class="value-end">70</div></div></div>
+					 <div class="col-sm-2"></div>
+			 </div>
+			 <div class="row">
+					 <div class="col-sm-2" align="center"></div>
+					 <div class="col-sm-1" align="center"></div>
+						{% if type == "discrete" %}
+					 <div class="col-sm-7 slider-horizontal-col"><input id="example" type="text" data-slider-tooltip="hide" data-slider-min="1" data-slider-max="9" data-slider-step="1" data-slider-ticks="[1, 2, 3, 4, 5, 6, 7, 8, 9]" data-slider-value=5 data-slider-enabled="false" /></div>
+						{% elif type == "continuous" %}
+						<div class="col-sm-7 slider-horizontal-col">
+								<input id="example" type="text" data-slider-tooltip="hide" data-slider-min="0" data-slider-max="100" data-slider-step="0.1" data-slider-value=50 data-slider-enabled="false"/>
+						</div>
+						{% endif %}
+					 <div class="col-sm-2"><button type="button" class="btn btn-primary btn-large" disabled="True">Confirmar</button></div>
+			 </div>
+			 <div class="row">
+					 <div class="col-sm-2" align="center">Su contraparte recibe</div>
+					 <div class="col-sm-1" align="center"><span class="slider-value"">40</span></div>
+					 <div class="col-sm-7"><div class="slider-reference"><div class="value-start">80</div><div class="value-end">0</div></div></div>
+					 <div class="col-sm-2"></div>
+				</div>
+		</div>
+</div>
+
+{% block scripts %}
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.5.3/bootstrap-slider.min.js"></script>
+	<script>
+	$("#example").slider({});
+	</script>
+{% endblock %}

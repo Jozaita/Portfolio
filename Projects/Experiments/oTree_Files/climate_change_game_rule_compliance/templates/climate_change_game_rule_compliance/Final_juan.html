@@ -1,0 +1,30 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+{% if not inactive %}
+Resultado Final	
+{% else %}
+Desconectado
+{% endif %}
+{% endblock %}
+
+{% block content %}
+{% if not inactive %}
+<h4>Su pago correspondiente a esta parte del juego es de {{ game_payoff }}
+  puntos.</h4>
+<br>
+<h4>Su pago final es de {{total_payoff}}.</h4>
+<br>
+<!--<h4>Este pago se traduce en un total de {{profit|floatformat:"2"}} euros, teniendo en cuenta que ha obtenido dos euros por venir al experimento .</h4>
+<br>
+<h4>La sesión ha finalizado. Muchas gracias por su participación.</h4>
+<br>
+-<h4>A continuación le pediremos su cuenta de Paypal para asegurar el pago.</h4>-->
+ 
+{% next_button %}
+{% else %}
+{% include 'norm_compliance_3/Inactive.html' %}
+{% endif %}
+{% endblock %}
+

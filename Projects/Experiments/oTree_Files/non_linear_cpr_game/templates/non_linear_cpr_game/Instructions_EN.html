@@ -1,0 +1,20 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+{% if not inactive %}
+		Instructions for section 6
+{% else %}
+Offline
+{% endif %}
+{% endblock %}
+
+{% block content %}
+{% if not inactive %}
+		{% include 'non_linear_cpr_game/text_Instructions_EN' %}
+	
+		{% next_button %}
+{% else %}
+{% include 'non_linear_cpr_game/Inactive_EN.html' %}
+{% endif %}
+{% endblock %}

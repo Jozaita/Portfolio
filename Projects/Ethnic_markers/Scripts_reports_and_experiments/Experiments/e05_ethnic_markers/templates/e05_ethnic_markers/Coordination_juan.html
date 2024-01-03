@@ -1,0 +1,44 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags  %}
+{% block title %}
+{% if not inactive  %}
+Acciones
+{% else  %}
+Desconectado
+{% endif  %}
+{% endblock %}
+{% block content  %}
+{% if not inactive %}
+ <div class="container marketing">
+      <div class="row">
+        <div class="col-lg-4">
+        <figure>
+         {% if participant.vars.marker == 'amarillo'%}
+         <img class="featurette-image img-responsive" src="{% static "ethnic_markers/marker_pics/sombrero_amarillo_you.png" %}"alt="yellow marker">
+         {% elif participant.vars.marker == 'azul'%}
+         <img class="featurette-image img-responsive" src="{% static "ethnic_markers/marker_pics/sombrero_azul_you.png" %}"alt="blue marker">
+         {% endif %}
+         {% if player.marker_partner == 'amarillo' %}
+         <img class="featurette-image img-responsive" src="{% static "ethnic_markers/marker_pics/sombrero_amarillo_partner.png" %}"alt="yellow marker">
+         {% elif player.marker_partner == 'azul' %}
+         <img class="featurette-image img-responsive" src="{% static "ethnic_markers/marker_pics/sombrero_azul_partner.png" %}"alt="blue marker">
+         {% endif %}
+        </figure>
+        </div>
+        <h4 class='mb-4' style="padding:20px;font-size:18px;"> Su sombrero es
+        {{participant.vars.marker}} y ha sido emparejado con alguien con
+        sombrero {{player.marker_partner}}.</h4>
+        <h4 class='mb-4' style="padding:20px;font-size:18px;"> Ahora tiene que
+        decidir qué acción va a utilizar, A o B: </h4>
+        {% formfield player.acción  %}
+        <h5>*Recuerde que si usted y su pareja eligen la misma acción ambos
+            recibirán 1,5 puntos, y si eligen diferentes acciones, recibirán 1
+            punto.</h5>
+        </div>
+        {% next_button %}
+        </div>
+
+{% else %}
+{% include 'e05_ethnic_markers/Inactive.html' %}
+{% endif  %}
+{% endblock  %}

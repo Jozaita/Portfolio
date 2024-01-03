@@ -1,0 +1,19 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+{% if not inactive %}
+Ha tomado sus decisiones por ahora
+{% else %}
+Desconectado
+{% endif %}
+{% endblock %}
+
+{% block content %}
+{% if not inactive %}
+<p> La primera parte del experimento ha concluído. A la misma hora a la que comenzó usted hoy esta primera parte, se iniciará la segunda parte del experimento. A esa hora, se activarán las instrucciones y podrá comenzar.</p>
+<p> Muchas gracias por su participación</p>
+{% else %}
+{% include 'non_linear_cpr_game/Inactive_SPA.html' %}
+{% endif %}
+{% endblock %}

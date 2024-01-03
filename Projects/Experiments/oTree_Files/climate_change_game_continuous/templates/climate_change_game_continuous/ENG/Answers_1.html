@@ -1,0 +1,85 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+	{% if not inactive %}
+	<div class ="contained-fluid">
+		<div class="panel panel-primary">
+			<div class="panel-heading">Module 1 - Answers 1/3</div>
+		</div>
+	</div>
+		{% else %} 
+		Disconnected
+	{% endif %}
+{% endblock %}
+
+{% block content %}
+{% if not inactive %}
+		<div class="container-fluid">
+			<div class="panel panel-primary">
+				<div class="panel-body">
+					<p>You have answered correctly <strong>{{ player.correct_answers_1 }}</strong> out of <strong>4</strong> questions. Now, we will show you your answers together with the correct ones.</p>
+				</div>
+			</div>
+
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<b>Answers</b>
+				</div>
+
+				<div class="table-responsive">
+					<table class="table">
+						<tr>
+							<th>Question</th>
+							<th>Your answer</th>
+							<th>Correct answer</th>
+						</tr>
+						{% if player.question_1 == Constants.answer_1 %}
+							<tr class="success">
+						{% else %}
+							<tr class="danger">
+						{% endif %}
+								<td>{{ question_1_text }}</td>
+								<td>{{ player.question_1|floatformat:"0" }}</td>
+								<td>{{Constants.answer_1}}</td>
+							</tr>
+
+						{% if player.question_2 == Constants.answer_2 %}
+							<tr class="success">
+						{% else %}
+							<tr class="danger">
+						{% endif %}
+								<td>{{ question_2_text }}</td>
+								<td>{{ player.question_2|floatformat:"0" }}</td>
+								<td>{{Constants.answer_2}}</td>
+							</tr>
+						{% if player.question_3 == Constants.answer_3 %}
+							<tr class="success">
+						{% else %}
+							<tr class="danger">
+						{% endif %}
+								<td>{{ question_3_text }}</td>
+								<td>{{ player.question_3|floatformat:"0" }} </td>
+								<td>{{ Constants.answer_3 }} </td>
+							</tr>
+
+						{% if player.question_4 == Constants.answer_4 %}
+							<tr class="success">
+						{% else %}
+							<tr class="danger">
+						{% endif %}
+								<td>{{ question_4_text }}</td>
+								<td>{{ player.question_4 }}</td>
+								<td>{{Constants.answer_4}}</td>
+							</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		{% next_button %}
+
+	{% else %}
+	{% include 'climate_change_game_continuous/ENG/Inactive.html' %}
+	{% endif %}
+{% endblock %}

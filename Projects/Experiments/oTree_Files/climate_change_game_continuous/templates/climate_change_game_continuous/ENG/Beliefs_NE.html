@@ -1,0 +1,27 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+	{% if not inactive %}
+	<div class="contained-fluid">
+		<div class="panel panel-primary">
+			<div class="panel-heading">Module 1 - Page 5/8 
+			</div>
+			</div>
+	{% else %}
+		Disconnected
+	{% endif %}
+{% endblock %}
+
+{% block content %}
+	{% if not inactive %}
+		
+		{% include 'climate_change_game_continuous/ENG/text_NE_alt.html' %}
+
+		{% next_button %}
+
+		{% include 'climate_change_game_continuous/ENG/text_Instructions_3.html' with type="reminder" %}	
+	{% else %}
+	{% include 'climate_change_game_continuous/ENG/Inactive.html' %}
+	{% endif %}
+{% endblock %}

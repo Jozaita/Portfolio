@@ -1,0 +1,22 @@
+
+{% block content %}
+	<div class="container-fluid">
+		{% if type == "reminder" %}
+			<div class="panel panel-default">
+		{% endif %}
+		{% if type != "reminder" %}
+			<div class="panel panel-primary">
+		{% endif %}
+				<div class="panel-body">
+
+
+					<h4>Instructions I</h4>
+					<p>For this task you are assigned to <b>a group of {{Constants.players_per_group}} participants (including you)</b>. These are real participants. There is no deception involved in this study. You will not know who the other participants are and they will not know who you are. Each of you is presented with the same decision scenario. You may earn additional money with this task depending on the choices you and your group members make. Your decisions are anonymous and will not be communicated to the other participants. You can complete the decision task without having to wait for the other group members to finish making their decision. Once all group members have finished the decision task we will send you a notification on Prolific and you can come back to this link to see the outcome of the decision and your corresponding earnings.</p>
+					<br><br>
+
+					<p>You and the {{other_players_per_group}} other people in your group each receive<b> {{Constants.endowment}} tokens</b>. These {{Constants.endowment}} tokens are worth £{{token_value|floatformat:"2"}}, so each token is worth £{{Constants.currency_per_token|floatformat:"2"}}. You can decide to <b>keep these tokens for yourself</b>, or to <b>contribute them to a collective pot</b>. Every token contributed to the collective pot is divided over you and all group members. In other words, the return of a token contributed to the collective pot is 1/5 = 0.20. Your earnings are the sum of the number of tokens kept privately (£0.50 per token) and the share of tokens received from the collective pot (£0.50/5 = £0.10 per token). 
+</p>
+				</div>
+			</div>
+			</div>
+{% endblock %}

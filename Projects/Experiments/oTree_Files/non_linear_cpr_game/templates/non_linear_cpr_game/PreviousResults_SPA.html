@@ -1,0 +1,42 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+{% if not inactive %}
+		Parte 6, ronda {{ previous_round_number }} Resultado
+{% else %}
+Desconectado
+{% endif %}
+{% endblock %}
+
+{% block content %}
+{% if not inactive %}
+		<div class="container-fluid">
+			<div class="panel panel-primary">
+				<div class="panel-heading"><b>Decisión de contribución</b></div>
+				<div class="panel-body">
+					<p>Usted empezó con una cantidad total de <strong>{{ Constants.endowment }}</strong>. <strong>Usted contribuyó {{ previous_contribution }}</strong> a la caja común y <strong>su grupo contribuyó un total de {{ previous_group_contribution }}</strong>. La lista completa de las contribuciones de su grupo aparece más abajo, junto con el hecho de si están inactivos. Las contribuciones del resto de participantes están ordenadas al azar.</p>					<ul class="list-group">
+						<div class="row">
+						<li class = "list-group-item text-success">{{previous_contribution}} - Su contribución </li>
+						<li class ="list-group-item"><b>Contribuciones de los miembros de su grupo</b></li>
+						<li class = "list-group-item"><b>Contribución | ¿Está activo? (El signo &#10060;al lado de la contribución indica que el participante está inactivo y la decisión fue tomada de forma automática) </b></li>
+						{% for item in contribution_inactive %}
+						<li class ="list-group-item">{{item}}</li>
+						{% endfor %}
+					</ul>
+
+			<div class="panel panel-primary">
+				<div class="panel-body">
+					<br>
+						<p>Sus ganancias de esta ronda son por tanto <strong>{{previous_unconditional_payoff|floatformat:1 }}</strong>.</p>
+				</div>
+			</div>
+		</div>
+
+		{% next_button %}
+		
+		{% include 'non_linear_cpr_game/text_Instructions_SPA.html' with type="reminder" %}
+{% else %}
+{% include 'non_linear_cpr_game/Inactive_SPA.html' %}
+{% endif %}
+{% endblock %}

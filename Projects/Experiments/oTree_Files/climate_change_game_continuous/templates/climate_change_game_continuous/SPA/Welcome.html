@@ -1,0 +1,16 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %} 
+¡Bienvenido al experimento!
+{% endblock %}
+
+{% block content %}
+
+<div>
+<h4>¡Comienza el experimento! En la siguiente página se le mostrarán las instrucciones del experimento.
+    Dispondrá de 5 minutos para su lectura, a continuación obtendrá más explicaciones, sumando un total de 15 minutos de explicaciones previas al comienzo del experimento. Pulse el botón para comenzar.  </h4>
+
+{% next_button %}
+</div>
+{% endblock %}

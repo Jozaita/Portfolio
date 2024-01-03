@@ -1,0 +1,123 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+{% if not inactive %}
+Preguntas
+{% else %}
+Desconectado
+{% endif %}
+{% endblock %}
+
+{% block content %}
+{% if not inactive %}
+		<div class="container-fluid">
+			<div class="panel panel-primary">
+				<div class="panel-body">
+					<p>Por favor, conteste las preguntas. Están hechas para ayudarle a comprender mejor esta parte del experimento. Sus respuestas no afectan a sus ganancias de ninguna manera. Recuerde, puede encontrar las instrucciones completas del experimento en una caja al final de esta página.</p> 
+				</div>
+			</div>
+
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<b>Si usted deposita 5 tokens a la caja común, y los otros cinco participantes en el grupo depositan 0 tokens entre todos:</b>
+				</div>
+
+				<div class="table-responsive">
+					<table class="table">
+						<tr>
+							<td>¿Cuáles son sus ganancias de la cuenta privada?</td>
+							<td>{% formfield player.question_1_1 with label="" %}</td>
+						</tr>
+						<tr>
+							<td>¿Cuáles son sus ganancias totales de la cuenta pública y la privada?</td>
+							<td>{% formfield player.question_1_2 with label="" %}</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="container-fluid">
+
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<b>Si usted deposita 5 tokens a la caja común, y los otros cinco participantes en su grupo depositan 150 tokens entre todos:</b>
+				</div>
+
+				<div class="table-responsive">
+					<table class="table">
+						<tr>
+							<td>¿Cuáles son sus ganancias de la cuenta privada?</td>
+							<td>{% formfield player.question_2_1 with label="" %}</td>
+						</tr>
+						<tr>
+							<td>¿Cuáles son sus ganancias totales de la cuenta pública y la privada?</td>
+							<td>{% formfield player.question_2_2 with label="" %}</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="container-fluid">
+
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<b>Si usted deposita 28 tokens a la caja común, y los otros cinco participantes depositan 0 tokens entre todos:</b>
+				</div>
+
+				<div class="table-responsive">
+					<table class="table">
+						<tr>
+							<td>¿Cuáles son sus ganancias de la cuenta privada? </td>
+							<td>{% formfield player.question_3_1 with label="" %}</td>
+						</tr>
+						<tr>
+							<td>¿Cuáles son sus ganancias totales de la cuenta pública y la privada?</td>
+							<td>{% formfield player.question_3_2 with label="" %}</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<b>Si usted deposita 28 tokens en la caja común y los otros cinco participantes de su grupo depositan 150 tokens entre todos:</b>
+				</div>
+
+				<div class="table-responsive">
+					<table class="table">
+						<tr>
+							<td>¿Cuáles son sus ganancias de la cuenta privada?</td>
+							<td>{% formfield player.question_4_1 with label="" %}</td>
+						</tr>
+						<tr>
+							<td>¿Cuáles son sus ganancias totales de la cuenta pública y la privada?</td>
+							<td>{% formfield player.question_4_2 with label="" %}</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<b>Si usted se ausenta en más de  {{ max_absence }} decisiones en esta parte: </b>
+				</div>
+			</div>
+				<div class="table-responsive">
+					<table class="table">
+						<tr>
+							<td>¿Qué sucede con su participación en el experimento? </td>
+							<td>{% formfield player.question_5 with label="" %}</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		{% next_button %}
+
+		{% include 'non_linear_cpr_game/text_Instructions_SPA.html' with type="reminder"%}
+{% else %}
+{% include 'non_linear_cpr_game/Inactive_SPA.html' %}
+{% endif %}
+{% endblock %}

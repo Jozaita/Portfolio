@@ -1,0 +1,34 @@
+
+
+{% block content %}
+{% if not inactive %}
+	<div class="container-fluid">
+		{% if type == "reminder" %}
+			<div class="panel panel-default">
+		{% endif %}
+		{% if type != "reminder" %}
+			<div class="panel panel-primary">
+		{% endif %}
+				<div class="panel-body">
+
+
+					<h4>Instructions II</h4>
+					<p>After you and all group members made your decision, by some probability <b>a disaster occurs that may destroy all or part of your earnings</b>. How much you lose as a result of the disaster depends on how much you and your group members contributed  to the collective pot. Every token invested into the collective pot<b> reduces the impact of the disaster by {{d_impact_percentage}}%</b>.</p> 
+					<br><br>
+					<p>There is<b> a {{dis_prob_percentage|floatformat:"0"}}%  chance that a disaster occurs</b>. In practice that means that at the end of this study, the computer spins a roulette wheel with <b>ten slots</b>: {{comp_dis_prob_number}} green slots and {{dis_prob_number}} red slots. The outcome of the roulette spin determines whether or not a disaster takes place.</p>
+<ul>
+    <li>If the roulette ends on one of the {{comp_dis_prob_number}} green slots, no disaster occurs.</li>
+    <li>If the roulette ends on one of the {{dis_prob_number}} green slots, a disaster occurs.</li>
+					</ul>
+					<p>To understand how the computer determines whether a disaster takes place, you may spin the <b>roulette wheel</b> below to simulate the outcome of the task. You should spin this wheel for a minimum of 10 times and observe the outcome of this simulated scenario.</p>
+				</div>
+				</div>
+			</div>
+
+			{% if type != "reminder"  %}
+			{% include 'climate_change_game_continuous/ENG/Roulette_Intro.html' %}
+			{% endif %}
+			{% else %}
+			{% include 'climate_change_game_continuous/ENG/Inactive.html' %}
+			{% endif %}
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+	{% if not inactive %} 
+	<div class="contained-fluid">
+		<div class="panel panel-primary">
+			<div class="panel-heading"> Preparación. 
+			</div>
+			</div>
+	{% else %}
+		Desconectado
+	{% endif %}
+{% endblock %}
+
+{% block content %}
+	<div class="container-fluid">
+		{% if not inactive %}
+					<div class="panel panel-primary">
+						<div class="panel-body">
+							<p>Está a punto de comenzar la ronda {{ subsession.round_number }}.</p>
+							<p>Se le ha agrupado al azar con otras {{ other_players_per_group }} personas. La probabilidad de desastre en esta ronda es de un {{d_prob_prc}} por ciento. Por cada punto que el grupo aporte al fondo común el impacto se reducirá en un {{d_impact_prc}} por ciento.</p>
+							<br>
+							<img class="img-responsive" src="{% static "climate_change_game/Slide1.jpg" %}" width="320">
+						</div>
+					</div>
+							{% next_button %}
+
+		{% include 'climate_change_game_continuous/text_Instructions_SPA.html' with type="reminder" %}
+	{% else %}
+	{% include 'climate_change_game_continuous/Inactive_SPA.html' %}
+	{% endif %}
+{% endblock %}

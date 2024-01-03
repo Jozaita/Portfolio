@@ -1,0 +1,29 @@
+{% load staticfiles otree_tags %}
+
+{% block content %}
+	<div class="container-fluid">
+		<div class="panel panel-success">
+			<div class="panel-body">
+				<p>Ahora tiene la oportunidad de ganar puntos adicionales. Al final del experimento se le dirá si ha ganado estos puntos.</p>
+			</div>
+		</div>
+
+		<div class="panel panel-success">
+			<div class="panel-heading">
+				<p><b>¿Cuanto contribuirán  las otras {{ Constants.other_players_per_group }} personas de su grupo en esta ronda?</b></p>
+			</div>
+			<div class="panel-body">
+				<p>Para esta pregunta, usted recibirá 100 tokens. Deberá dividir estos 100 tokens entre las 11 posibles acciones en este juego, dependiendo de como crea que los participantes han respondido a la tarea. Cada token representa un 1% de la población. Indique, para cada acción, que porcentaje de la población cree usted que escogió cada acción. Cuánto más cerca se encuentre de los valores usados por todos los participantes, más recompensa cobrará. </p>
+				<br>
+				{% for field in form %}
+					<div class="row">
+						<div class="col-sm-4" align="left">{% formfield field %}</div>
+					</div>
+				{% endfor %}
+				<div class="row">
+					<div class="col-sm-12" align="left"><img class="img-responsive" src="{% static "climate_change_game/EE_future_spa.png" %}" width="400"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

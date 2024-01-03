@@ -1,0 +1,4 @@
+En este ejercicio colocamos la red y aplicamos nuestro algoritmo de potencial de Lennard-Jones para calcular cual 
+es la variacion en un instante de tiempo. Todo esta incluido en el proyecto 'Ejercicio 1'. Partiendo del archivo 
+'Parametros', que marca la configuracion energetica de nuestro sistema, se obtienen : 'Simulacion', que nos da la 
+configuracion de posiciones, velocidades y aceleraciones tras la aplicacion del potencial. 

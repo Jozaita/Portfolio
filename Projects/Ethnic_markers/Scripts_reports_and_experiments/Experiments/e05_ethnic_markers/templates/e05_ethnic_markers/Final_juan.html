@@ -1,0 +1,22 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+{% block title %}
+{% if not inactive  %}
+Final de la primera parte
+{% else  %}
+Desconectado
+{% endif  %}
+{% endblock %}
+{% block content  %}
+{% if not inactive %}
+<h4>Esta parte del  experimento ha concluído, muchas gracias por su
+    colaboración.</h4>
+<h4>Ha obtenido un pago de {{player.bias_payoff }} de la pregunta de percepción.</h4>
+<h4>En global, usted ha obtenido {{ global_payoff }}  .</h4>
+<h4>Muchas gracias por su atencion.</h4>
+{% next_button %}
+
+{% else  %}
+{% include 'e05_ethnic_markers/Inactive.html'  %}
+{% endif  %}
+{% endblock  %}

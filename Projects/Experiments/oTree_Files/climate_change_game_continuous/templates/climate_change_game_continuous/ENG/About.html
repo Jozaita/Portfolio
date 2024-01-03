@@ -1,0 +1,42 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+	{% if not inactive %}
+	<div class="contained-fluid">
+		<div class="panel panel-primary">
+			<div class="panel-heading"> About the study 
+			</div>
+			</div>
+	{% else %}
+		Disconnected
+	{% endif %}
+{% endblock %}
+
+{% block content %}
+
+	{% if not inactive %}
+
+
+	<div class="container-fluid">
+		<div class="panel panel-success">
+			<div class="panel-body">
+				<p>Please take a minute to give us some feedback about how you experienced this study by answering the following questions.</p>
+				<br><br>
+				{% for field in form %}
+					<div class="row">
+						<div class="col-sm-12" align="left">{% formfield field  %}</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+
+
+
+		{% next_button %}
+
+	{% else %}
+	{% include 'climate_change_game_continuous/ENG/Inactive.html' %}
+	{% endif %}
+{% endblock %}

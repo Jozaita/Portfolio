@@ -1,0 +1,28 @@
+
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+{% block title %}
+{% if not inactive  %}
+Asignación de sombrero
+{% else %}
+Desconectado
+{% endif %}
+{% endblock %}
+
+{% block content %}
+{% if not inactive %}
+      <div class="row">
+            {% if participant.vars.marker  == 'amarillo' %}
+            <img class="featurette-image img-responsive" src="{% static "ethnic_markers/marker_pics/sombrero_amarillo_you.png" %}" alt="yellow marker"  >
+            {% elif participant.vars.marker == 'azul' %}    
+            <img class="featurette-image img-responsive" src="{% static "ethnic_markers/marker_pics/sombrero_azul_you.png" %}" alt="blue marker">
+            {% endif %}
+            <p class='mb-4' style="padding:20px;font-size:18px;">Se le ha
+            asignado un sombrero {{participant.vars.marker}}.</p>
+          {% next_button %}
+        </div>
+{% else %}
+{% include 'e1_ethnic_markers/Inactive.html' %}
+{% endif %}
+{% endblock %}
+

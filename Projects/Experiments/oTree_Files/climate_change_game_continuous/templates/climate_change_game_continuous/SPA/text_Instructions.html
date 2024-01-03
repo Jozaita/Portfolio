@@ -1,0 +1,40 @@
+{% load staticfiles %}
+
+{% block content %}
+	<div class="container-fluid">
+		{% if type == "reminder" %}
+			<br>
+			<br>
+			<div class="panel panel-default">
+		{% endif %}
+		{% if type != "reminder" %}
+			<div class="panel panel-primary">
+		{% endif %}
+				<div class="panel-body">
+					{% if type == "reminder" %}
+						<p><strong>No tomò <span style="color:blue">{{absence}} decisiones </span> del experimento hasta ahora. Usted será excluido del experimento si no tomará <span style="color:blue">{{ inactive_threshold }} decisiones</span> y no ganará nada por su participación en el experimento.</strong></p>
+						<br>
+					{% endif %}
+
+					<h4>Instrucciones</h4>
+					<p>Ahora vamos a agruparlo en grupos de  <strong>{{ Constants.players_per_group }} personas</strong>. Usted no sabrá quiénes son ni ellos sabrán quién es usted. En cada una de las rondas, cada uno de ustedes recibirá <strong>{{ Constants.endowment }} tokens</strong>. Esos <strong> 10 tokens equivalen a {{token_value}}  {{ Constants.real_currency }} </strong>, así que <strong>cada token vale {{ Constants.currency_per_token  }} {{Constants.real_currency}}</strong>. Puede decidir invertir dichos tokens en un fondo privado o en uno colectivo. Cualquier token que invierta en el fondo privado quedará para usted, mientras que los tokens invertidos en el fondo público se repartirán entre todos los miembros de su grupo. 
+					<br><br>
+					Después de que usted y los miembros de su grupo hayan tomado una decisión, con una cierta probabilidad ocurrirá un desastre que puede acabar con parte de sus tokens. La cantidad de tokens que pierda como resultado del desastre depende de cuánto hayan invertido en el fondo común usted y los miembros de su grupo. <strong>Cada token invertido en el fondo común reduce el impacto del desastre en un {{ d_impact }} por ciento</strong>.Mostremos algunos ejemplos para entender lo que esto significa: 
+				<br><br>
+						1. Si nadie invierte nada en el fondo colectivo (todo el mundo se queda con sus tokens) y un desastre ocurre, el impacto de este desastre será del 100 % y todo el mundo perderá todos sus tokens. 
+						<br><br>
+						2. Por otro lado, si todo el mundo invirtiera todos sus tokens en el fondo común ({{total_tokens}} tokens), el impacto del desastre se evitará por completo, los {{total_tokens}} tokens serán divididos entre todos los miembros del grupo y cada uno ganará {{Constants.endowment}} tokens ({{token_value}} {{Constants.real_currency}}) occurra el desastre o no ocurra.
+					<br><br>
+						3. Si todo el mundo invierte la mitad de sus tokens en el fondo colectivo, el impacto del desastre se reduce en un 50 %. Por lo tanto, si el desastre no ocurre sus ganancias consisten en {{Constants.endowment}} tokens: los {{half_tokens}} tokens que se mantuvieron privados y la parte de los tokens invertidos en el fondo común ({{half_tokens}} tokens). Si un desastre ocurre, perderían la mitad de sus tokens, quedándose únicamente con {{half_tokens}} tokens.
+						<br><br><br>
+						<strong>Hay una posibilidad de un {{dis_prob_percentage}} por ciento de probabilidad de que un desastre ocurra</strong>. En la práctica, esto significa que al final del estudio, el ordenador contará cuántos tokens han sido invertidos en el fondo común en total. Entonces, aleatoriamente se extrae un número entre 0 y 100. Si este número es mayor que {{dis_prob_percentage}}, no ocurrirá ningún desastre.  
+						<br>
+<!---					<p>Importante: si no toma sus decisiones por {{ Constants.inactive_threshold }} rondas o mas será excluido automáticamente y no ganará nada por su participacion en el experimento. <strong>Si una persona no toma su decisión en una ronda, se le asignará automáticamente una decisión escogida al azar de otra persona de su mismo grupo.</strong></p>
+<br> -->
+
+					{% if type != "reminder" %}<p>Encontrará estas instrucciones al final de cada pantalla. Ahora repasaremos algunos ejemplos para asegurarnos de que todo esté claro para usted.</p>{% endif %}
+				</div>
+			</div>
+	</div>
+	</div>
+{% endblock %}

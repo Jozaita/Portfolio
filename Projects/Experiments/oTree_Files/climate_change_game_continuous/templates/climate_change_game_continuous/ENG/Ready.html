@@ -1,0 +1,52 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+	{% if not inactive %}
+	<div class="contained-fluid">
+		<div class="panel panel-primary">
+			<div class="panel-heading"> Module 1 - Ready to start 
+			</div>
+			</div>
+	{% else %}
+		Disconnected
+	{% endif %}
+{% endblock %}
+
+{% block content %}
+<style>
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  border-radius:10px;
+  color: white;
+  background-color:#008CBA;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+</style>
+
+	{% if not inactive %}
+
+
+	<div class="container-fluid">
+		<div class="panel panel-success">
+			<div class="panel-body">
+				<p>You have now finished reading the instructions. When you are ready to start the decision task, please click <b>Start</b>.</p>
+				<br><br>
+			</div>
+		</div>
+	</div>
+
+
+	<button class="button">Start</button>
+
+	{% else %}
+	{% include 'climate_change_game_continuous/ENG/Inactive.html' %}
+	{% endif %}
+{% endblock %}

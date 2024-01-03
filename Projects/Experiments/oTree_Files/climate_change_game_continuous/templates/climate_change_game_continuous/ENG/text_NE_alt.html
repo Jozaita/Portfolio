@@ -1,0 +1,603 @@
+{% load staticfiles otree_tags %}
+{% block content %}
+	<div class="container-fluid">
+		
+		<div class="panel panel-info">
+
+			<div class="panel-body">
+			<p>All participants in this study are people that live in the UK. All participants respond to the same decision task you just responded to:</p> 
+<ul>
+    <li>They are assigned to a group with <b>{{other_players_per_group}} other participants.</b></li>
+    <li>They each receive <b>{{Constants.endowment}} tokens.</b> </li>
+    <li>There is a  <b>{{dis_prob_percentage|floatformat:"0"}} %</b> chance that a disaster occurs.</li>
+    <li>Any point contributed reduces the impact of that disaster by <b>{{d_impact_percentage}} %</b></li>
+</ul>
+
+<p>We ask you now to guess how they responded to the previous question. That is, we ask you to guess how many points these study participants believe every participant should contribute to the collective fund.</p>
+<br>
+
+<p>For this question, you receive 100 tokens. Every token represents one study participant that, like you, lives in the UK. Please indicate for every possible contribution between 0 and 10 <b>how many of the UK participations according to you believes one should choose that contribution</b>. </p>
+<br>
+<p>To answer, you can use the table below that contains every possible contribution between 0 and 10 with initially 0 tokens assigned to each answer. Write in each cell the number of people you think chose to contribute that number of tokens. For instance, if you think that, say, 20 out of 100 participants believe that one should contribute 4 tokens, write 20 in the answer box for “4 tokens”. Thus be careful, you have eleven numbers to guess and the numbers you write must sum up to 100.</p> 
+<br>
+<p>The final columns of the table show the sum of tokens assigned and the number of tokens left to assign. Below the table a figure shows how you distributed the tokens over the different contribution levels.</p> 
+<br>
+<p>For every token that you assign correctly, you will <b>receive £0.01</b>. If you assign all tokens correctly, you can earn £1.00 with this task. You can change the number of tokens assigned to each contribution level to try out different answers. Once you are satisfied with your distribution of tokens over the different actions and the total of the tokens sums to 100, you can click <b>Next</b> to save your answer and proceed with the next question.</p>
+
+			</div>
+		</div>
+	</div>
+ 
+
+  <style>
+
+
+.highcharts-figure,
+
+
+.highcharts-data-table table {
+
+
+    min-width: 310px;
+
+
+    max-width: 800px;
+
+
+    margin: 1em auto;
+
+
+}
+
+
+
+
+
+#container {
+
+
+    height: 400px;
+
+
+}
+
+
+
+
+
+.highcharts-data-table table {
+
+
+    font-family: Verdana, sans-serif;
+
+
+    border-collapse: collapse;
+
+
+    border: 1px solid #ebebeb;
+
+
+    margin: 10px auto;
+
+
+    text-align: center;
+
+
+    width: 100%;
+
+
+    max-width: 500px;
+
+
+}
+
+
+
+
+
+.highcharts-data-table caption {
+
+
+    padding: 1em 0;
+
+
+    font-size: 1.2em;
+
+
+    color: #555;
+
+
+}
+
+
+
+
+
+.highcharts-data-table th {
+
+
+    font-weight: 600;
+
+
+    padding: 0.5em;
+
+
+}
+
+
+
+
+
+.highcharts-data-table td,
+
+
+.highcharts-data-table th,
+
+
+.highcharts-data-table caption {
+
+
+    padding: 0.5em;
+
+
+}
+
+
+
+
+
+.highcharts-data-table thead tr,
+
+
+.highcharts-data-table tr:nth-child(even) {
+
+
+    background: #f8f8f8;
+
+
+}
+
+
+
+
+
+.highcharts-data-table tr:hover {
+
+
+    background: #f1f7ff;
+
+
+}
+
+
+
+
+
+background-color: #0f0
+
+
+table {
+
+
+  border-collapse: collapse;
+
+
+  border-spacing: 0px;
+
+
+}
+
+
+table,
+
+
+th,
+
+
+td {
+
+
+  padding: 5px;
+
+
+  border: 1px solid black;
+
+
+  font-family: Verdana, sans-serif;
+
+
+  font-size: 0.8em;
+
+
+}
+
+
+.red-text {
+
+
+   color: red;
+
+
+}
+
+
+input {
+
+
+  text-align: center;
+
+
+}
+
+
+
+
+
+  </style>
+
+
+
+
+
+
+
+ <script src="https://code.highcharts.com/highcharts.js"></script>
+
+
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+
+
+
+
+
+
+
+    <p>How many tokens do you think other participants contributed?</p>
+
+
+<table>
+
+
+  <tr>
+
+
+
+
+
+    <th>0 tokens</th>
+
+
+    <th>1 tokens</th>
+
+
+    <th>2 tokens</th>
+
+
+    <th>3 tokens</th>
+
+
+    <th>4 tokens</th>
+
+
+    <th>5 tokens</th>
+
+
+    <th>6 tokens</th>
+
+
+    <th>7 tokens</th>
+
+
+    <th>8 tokens</th>
+
+
+    <th>9 tokens</th>
+
+
+    <th>10 tokens</th>
+
+
+    <th>Total</th>
+
+
+    <th>Remaining</th>
+
+
+  </tr>
+
+
+  <tr>
+
+
+    <td><input onblur="findTotal()" name="ne0" id="ne0" class="exp" size=3/ value=0 onkeyup='saveValue(this);'></td>
+
+
+    <td><input onblur="findTotal()" name="ne1" id="ne1" class="exp" size=3/ value=0 onkeyup='saveValue(this);'></td>
+
+
+    <td><input onblur="findTotal()" name="ne2" id="ne2" class="exp" size=3/ value=0 onkeyup='saveValue(this);'></td>
+
+
+    <td><input onblur="findTotal()" name="ne3" id="ne3" class="exp" size=3/ value=0  onkeyup='saveValue(this);'></td>
+
+
+    <td><input onblur="findTotal()" name="ne4" id="ne4" class="exp" size=3/ value=0 onkeyup='saveValue(this);'></td>
+
+
+    <td><input onblur="findTotal()" name="ne5" id="ne5" class="exp" size=3/ value=0 onkeyup='saveValue(this);'></td>
+
+
+    <td><input onblur="findTotal()" name="ne6" id="ne6" class="exp" size=3/ value=0 onkeyup='saveValue(this);'></td>
+
+
+    <td><input onblur="findTotal()" name="ne7" id="ne7" class="exp" size=3/ value=0 onkeyup='saveValue(this);'></td>
+
+
+    <td><input onblur="findTotal()" name="ne8" id="ne8" class="exp" size=3/ value=0 onkeyup='saveValue(this);'></td>
+
+
+    <td><input onblur="findTotal()" name="ne9" id="ne9" class="exp" size=3/ value=0 onkeyup='saveValue(this);'></td>
+
+
+    <td><input onblur="findTotal()" name="ne10" id="ne10" class="exp" size=3/ value=0 onkeyup='saveValue(this);'></td>
+
+
+    <td><input name="sum" id="sumTokens" size=3 style="font-weight: bold;" readonly/></td>
+
+
+    <td><input name="left" id="tokensLeft" size=3 style="font-weight: bold;" readonly/></td>
+
+
+  </tr>
+
+
+</table>
+
+
+
+
+<figure class="highcharts-figure">
+
+
+    <div id="container"></div>
+
+
+
+
+
+</figure>
+
+
+
+
+
+
+
+
+<input type="hidden" name="normative_expectations0" id="normative_expectations0" />
+
+
+<input type="hidden" name="normative_expectations1" id="normative_expectations1" />
+
+
+<input type="hidden" name="normative_expectations2" id="normative_expectations2" />
+
+
+<input type="hidden" name="normative_expectations3" id="normative_expectations3" />
+
+
+<input type="hidden" name="normative_expectations4" id="normative_expectations4" />
+
+
+<input type="hidden" name="normative_expectations5" id="normative_expectations5" />
+
+
+<input type="hidden" name="normative_expectations6" id="normative_expectations6" />
+
+
+<input type="hidden" name="normative_expectations7" id="normative_expectations7" />
+
+
+<input type="hidden" name="normative_expectations8" id="normative_expectations8" />
+
+
+<input type="hidden" name="normative_expectations9" id="normative_expectations9" />
+
+
+<input type="hidden" name="normative_expectations10" id="normative_expectations10" />
+
+
+
+
+
+
+
+
+
+
+
+  <script>
+	  for (i=0;i<11;i++){
+	  document.getElementById("ne"+i).value = getSavedValue("ne"+i)
+	  }
+        /* Here you can add more inputs to set value. if it's saved */
+
+        //Save the value function - save it to localStorage as (ID, VALUE)
+        function saveValue(e){
+            var id = e.id;  // get the sender's id to save it . 
+            var val = e.value; // get the value. 
+            sessionStorage.setItem(id, val);// Every time user writing something, the localStorage's value will override . 
+        }
+
+        //get the saved value function - return the value of "v" from localStorage. 
+        function getSavedValue  (v){
+            if (!sessionStorage.getItem(v)) {
+                return "0";// You can change this to your defualt value. 
+            }
+            return sessionStorage.getItem(v);
+        }
+
+
+function clearStorage() {
+
+    let session = sessionStorage.getItem('register');
+
+    if (session == null) {
+    
+        localStorage.removeItem('remove');
+
+    }
+    sessionStorage.setItem('register', 1);
+}
+window.addEventListener('load', clearStorage);
+
+
+
+    // Alternative dynamic chart (Eva)
+
+    const chart = Highcharts.chart('container', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Contributions of others'
+    },
+    xAxis: {
+        categories: [
+            '0 tokens',
+            '1 token',
+            '2 tokens',
+            '3 tokens',
+            '4 tokens',
+            '5 tokens',
+            '6 tokens',
+            '7 tokens',
+            '8 tokens',
+            '9 tokens',
+            '10 tokens',
+        ],
+        crosshair: true
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Number of UK participants',
+	    style:{fontSize:'16px'
+	    }
+        }
+    },
+    legend:{ enabled:false },
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table style="border:0">',
+        pointFormat: '<tr><td style="border:0"><b>{point.y:.0f}%</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    navigation: {
+			buttonOptions: {
+  			enabled: false
+  		}
+ 		},
+    series: [{
+        name: 'ne',
+        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    }, ]
+});
+// Update bar chart based on input fields
+chart.series[0].data.forEach((data, i) => {
+  const el = document.getElementById('ne' + i)
+  el.addEventListener('change', updateAllColumns())
+  el.addEventListener('change',updateColumn(i))	
+})
+
+function updateAllColumns() {
+  for (let i = 0; i < 11; i++) {
+    const input = document.getElementById("ne" + i);
+    const value = Number(input.value) || null;
+    chart.series[0].data[i].update(value);
+  }
+}
+function updateColumn (i) {
+	return function (e) {
+    const value = Number(e.target.value) || null
+    chart.series[0].data[i].update(value)
+    console.log(chart.series[0])
+  }
+}
+
+function findTotal(){
+    var arr = document.getElementsByClassName('exp');
+    var tot=0;
+    for(var i=0;i<arr.length;i++){
+	console.log(arr[i].value)
+        if(parseFloat(arr[i].value))
+            tot += parseFloat(arr[i].value);
+	    actualizarCampoNormativeExpectations(i,parseFloat(arr[i].value))	
+    }
+    document.getElementById('sumTokens').value = tot;
+    document.getElementById('tokensLeft').value = 100-tot;
+    if (tot !== 100) {
+    	document.getElementById('sumTokens').classList.add("red-text");
+      document.getElementById('tokensLeft').classList.add("red-text");
+    } else {
+    	document.getElementById('sumTokens').classList.remove("red-text");
+      document.getElementById('tokensLeft').classList.remove("red-text");
+    }
+}
+
+    // Función para actualizar el campo empirical_expectations correspondiente
+
+
+    function actualizarCampoNormativeExpectations(index, nuevaAltura) {
+
+
+      document.getElementById("normative_expectations" + index).value = nuevaAltura;
+
+
+    }
+
+window.onload = function() {
+ findTotal();
+
+
+
+
+};
+
+
+
+
+
+
+
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
+
+
+
+

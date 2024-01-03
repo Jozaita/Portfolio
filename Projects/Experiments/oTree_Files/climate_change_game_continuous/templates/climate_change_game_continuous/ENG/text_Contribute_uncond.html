@@ -1,0 +1,30 @@
+{% load staticfiles otree_tags %}
+
+{% block content %}
+{% if not inactive %}
+	<div class="container-fluid">
+		<div class="panel panel-primary">
+			<div class="panel-body">
+			    {% if round_number > 1 %}
+			    <p>We now start a new decision scenario.
+			    {% endif %}
+			    <p>You are assigned to a group with <b>{{other_players_per_group}} other participants.</b></p>
+			    <p>   You each receive <b>{{Constants.endowment}} tokens.</b></p> 
+			    <p>There is a <b> {{dis_prob_percentage|floatformat:"0"}}%</b> chance that a disaster occurs.</p>
+			    <p>Any point contributed reduces the impact of that disaster by<b> {{d_impact_percentage|floatformat:"0"}}%</b></p>
+			    <br>
+			    <p>How many tokens do you<b> contribute to the collective pot?</b></p>
+			    <p><i>Please decide how many tokens you contribute to the collective pot. It can be any number from 0 to 10. The remainder (if any) you keep for yourself. You can use the results calculator and disaster simulator below. Once you are satisfied with your decision you can click <b>Next</b> to save your answer and proceed with the next question.
+</i></p>
+			</div>
+			<div class="row">
+				<div class="col-sm-12" align="left">{% formfield player.contribution with label="" %}</div>
+			</div>
+		</div>
+		{% include 'climate_change_game_continuous/ENG/Calculator_2.html' %}
+	{% include 'climate_change_game_continuous/ENG/Roulette.html' %}
+	</div>
+			{% else %}
+			{% include 'climate_change_game_continuous/ENG/Inactive.html' %}
+			{% endif %}
+{% endblock %}

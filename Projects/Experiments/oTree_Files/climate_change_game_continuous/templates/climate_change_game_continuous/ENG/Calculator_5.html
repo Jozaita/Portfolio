@@ -1,0 +1,137 @@
+
+<style>
+th, td {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table, th, td {
+  border: 1px solid;
+}
+
+</style>
+
+<script>
+function calcular() {
+    var arg1 = parseFloat(document.getElementById("slider1").value);
+    var arg2 = parseFloat(document.getElementById("slider2").value);
+    var arg3 = parseFloat(document.getElementById("slider3").value);
+    var arg4 = parseFloat(document.getElementById("slider4").value);
+    var arg5 = parseFloat(document.getElementById("slider5").value);
+    
+    document.getElementById('output1').innerHTML = arg1
+    document.getElementById('output2').innerHTML = arg2
+    document.getElementById('output3').innerHTML = arg3
+    document.getElementById('output4').innerHTML = arg4
+    document.getElementById('output5').innerHTML = arg5
+    
+    var pro1_nodis = (10 - arg1) + (arg1 + arg2 + arg3 + arg4 + arg5) / 5;
+    var pro2_nodis = (10 - arg2) + (arg1 + arg2 + arg3 + arg4 + arg5) / 5;
+    var pro3_nodis = (10 - arg3) + (arg1 + arg2 + arg3 + arg4 + arg5) / 5;
+    var pro4_nodis = (10 - arg4) + (arg1 + arg2 + arg3 + arg4 + arg5) / 5;
+    var pro5_nodis = (10 - arg5) + (arg1 + arg2 + arg3 + arg4 + arg5) / 5;
+    var pro1_dis = ((10 - arg1) + (arg1 + arg2 + arg3 + arg4 + arg5) / 5) * 0.02 * (arg1 + arg2 + arg3 + arg4 + arg5);
+    var pro2_dis = ((10 - arg2) + (arg1 + arg2 + arg3 + arg4 + arg5) / 5) * 0.02 * (arg1 + arg2 + arg3 + arg4 + arg5);
+    var pro3_dis = ((10 - arg3) + (arg1 + arg2 + arg3 + arg4 + arg5) / 5) * 0.02 * (arg1 + arg2 + arg3 + arg4 + arg5);
+    var pro4_dis = ((10 - arg4) + (arg1 + arg2 + arg3 + arg4 + arg5) / 5) * 0.02 * (arg1 + arg2 + arg3 + arg4 + arg5);
+    var pro5_dis = ((10 - arg5) + (arg1 + arg2 + arg3 + arg4 + arg5) / 5) * 0.02 * (arg1 + arg2 + arg3 + arg4 + arg5);
+    var total_contribution = arg1 + arg2 + arg3 + arg4 + arg5;
+    var impact = 100 - 0.02 * 100 * (arg1 + arg2 + arg3 + arg4 + arg5);
+
+    document.getElementById("impact").textContent = impact.toFixed(0);
+    document.getElementById("total_contribution").textContent = total_contribution.toFixed(0);
+    document.getElementById("pro1_nodis").textContent = pro1_nodis.toFixed(2);
+    document.getElementById("pro1_dis").textContent = pro1_dis.toFixed(2);
+    document.getElementById("pro2_nodis").textContent = pro2_nodis.toFixed(2);
+    document.getElementById("pro2_dis").textContent = pro2_dis.toFixed(2);
+    document.getElementById("pro3_nodis").textContent = pro3_nodis.toFixed(2);
+    document.getElementById("pro3_dis").textContent = pro3_dis.toFixed(2);
+    document.getElementById("pro4_nodis").textContent = pro4_nodis.toFixed(2);
+    document.getElementById("pro4_dis").textContent = pro4_dis.toFixed(2);
+    document.getElementById("pro5_nodis").textContent = pro5_nodis.toFixed(2);
+    document.getElementById("pro5_dis").textContent = pro5_dis.toFixed(2);
+    
+}
+</script>
+
+<div class="panel panel-primary">
+    <div class="panel-heading" style="text-align: center">
+        <h3>Results Calculator</h3>
+    </div>
+
+<div class="panel-body" style="text-align: center">
+    <h4>Risk of disaster: 10 %</h4>
+    <h4>Impact of disaster: <span id="impact"></span> %</h4> 
+    <h4>Total contribution: <span id="total_contribution"></span></h4>
+
+    <div class="center">
+        <table class="center">
+<thead>
+    <tr>
+    	<th style="text-align: center"></th>
+        <th style="text-align: center">Contribution</th>
+        <th style="text-align: center">Earnings with disaster</th>
+        <th style="text-align: center">Earnings without disaster</th>
+    </tr>
+</thead>
+            <tbody>
+<tr>
+    <td >Player 1:</td>
+    <td class="column-spacing">
+        <input type="range" min="0" max="10" value="5" class="slider" id="slider1" data-slider="1" oninput="calcular()">
+         <output id="output1"></output>
+    </td>
+    <td style="text-align: center"><span id="pro1_dis"></span></td>
+    <td style="text-align: center"><span id="pro1_nodis"></span></td>
+</tr>
+<tr>
+    <td>Player 2:</td>
+    <td class="column-spacing">
+        <input type="range" min="0" max="10" value="5" class="slider" id="slider2" data-slider="2" oninput="calcular()">
+         <output id="output2"></output>
+    </td>
+    <td style="text-align: center"><span id="pro2_dis"></span></td>
+    <td style="text-align: center"><span id="pro2_nodis"></span></td>
+</tr>
+<tr>
+    <td>Player 3:</td>
+    <td class="column-spacing">
+        <input type="range" min="0" max="10" value="5" class="slider" id="slider3" data-slider="3" oninput="calcular()">
+         <output id="output3"></output>
+    </td>
+    <td style="text-align: center"><span id="pro3_dis"></span></td>
+    <td style="text-align: center"><span id="pro3_nodis"></span></td>
+</tr>
+<tr>
+    <td>Player 4:</td>
+    <td class="column-spacing">
+        <input type="range" min="0" max="10" value="5" class="slider" id="slider4" data-slider="4" oninput="calcular()">
+         <output id="output4"></output>
+    </td>
+    <td style="text-align: center"><span id="pro4_dis"></span></td>
+    <td style="text-align: center"><span id="pro4_nodis"></span></td>
+</tr>
+
+     <tr>
+    <td>Player 5:</td>
+    <td class="column-spacing">
+        <input type="range" min="0" max="10" value="5" class="slider" id="slider5" data-slider="5" oninput="calcular()">
+         <output id="output5"></output>
+    </td>
+    <td style="text-align: center"><span id="pro5_dis"></span></td>
+    <td style="text-align: center"><span id="pro5_nodis"></span></td>
+</tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+
+
